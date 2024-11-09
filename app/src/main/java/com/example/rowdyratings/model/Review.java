@@ -1,4 +1,4 @@
-package com.example.rowdyratings;
+package com.example.rowdyratings.model;
 
 public class Review {
     private String courseNum;

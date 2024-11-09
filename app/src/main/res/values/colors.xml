@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="utsaOrange">#f15a22</color>
+    <color name="utsaBlue">#0c2340</color>
 </resources>

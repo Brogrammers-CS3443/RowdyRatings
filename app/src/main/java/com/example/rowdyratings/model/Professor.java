@@ -1,4 +1,4 @@
-package com.example.rowdyratings;
+package com.example.rowdyratings.model;
 
 import java.util.ArrayList;
 
