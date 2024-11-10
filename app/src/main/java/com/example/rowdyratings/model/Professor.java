@@ -12,9 +12,9 @@ public class Professor {
     private ArrayList<Review> profReviews;
     private double overallRating;
 
-    public Professor(String profName, double overallRating) {
+    public Professor(String profName, ArrayList<Review> profReviews, double overallRating) {
         this.profName = profName;
-        this.profReviews = new ArrayList<>();
+        this.profReviews = profReviews;
         this.overallRating = overallRating;
     }
 
@@ -58,7 +58,7 @@ public class Professor {
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] tokens = line.split(",");
-                Professor professor = new Professor(tokens[0], Double.parseDouble(tokens[1]));
+                //Professor professor = new Professor(tokens[0], Double.parseDouble(tokens[1]));
 
                 //Review profReview = new Review(tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
             }
