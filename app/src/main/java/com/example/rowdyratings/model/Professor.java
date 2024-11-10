@@ -12,9 +12,9 @@ public class Professor {
     private ArrayList<Review> profReviews;
     private double overallRating;
 
-    public Professor(String profName, ArrayList<Review> profReviews, double overallRating) {
+    public Professor(String profName, double overallRating) {
         this.profName = profName;
-        this.profReviews = profReviews;
+        this.profReviews = new ArrayList<>();
         this.overallRating = overallRating;
     }
 
@@ -42,6 +42,13 @@ public class Professor {
         this.overallRating = overallRating;
     }
 
+    public void addReview(Review profReview){
+        if(profReview == null)
+            return;
+        if(profReview != null)
+            profReviews.add(profReview);
+    }
+
     public void loadProfessors(Context context){
         AssetManager manager = context.getAssets();
         try{
@@ -51,7 +58,9 @@ public class Professor {
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] tokens = line.split(",");
-                String profName = tokens[0];
+                Professor professor = new Professor(tokens[0], Double.parseDouble(tokens[1]));
+
+                Review profReview = new Review(tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
             }
         }catch(IOException e){
             e.printStackTrace();
