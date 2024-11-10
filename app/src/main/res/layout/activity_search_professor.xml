@@ -5,10 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/utsaBlue"
     tools:context=".SearchProfessorActivity">
 
     <SearchView
+        android:id="@+id/professor_search_view"
         android:layout_width="370dp"
         android:layout_height="60dp"
         android:layout_marginStart="21dp"
@@ -19,14 +20,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
 
     <LinearLayout
         android:id="@+id/profContainer"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="196dp"
-        android:background="@color/design_default_color_on_primary"
+        android:background="@color/utsaBlue"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 

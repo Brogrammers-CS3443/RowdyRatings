@@ -1,6 +1,11 @@
 package com.example.rowdyratings.model;
 
+import android.content.Context;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.InputStream;
+import android.content.res.AssetManager;
 
 public class Professor {
     private String profName;
@@ -35,6 +40,22 @@ public class Professor {
 
     public void setOverallRating(double overallRating) {
         this.overallRating = overallRating;
+    }
+
+    public void loadProfessors(Context context){
+        AssetManager manager = context.getAssets();
+        try{
+            InputStream file = manager.open("SampleRRData.csv");
+            Scanner scanner = new Scanner(file);
+            scanner.nextLine();
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                String[] tokens = line.split(",");
+                String profName = tokens[0];
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     //returns average of overall ratings
