@@ -3,6 +3,8 @@ package com.example.rowdyratings.model;
 import android.content.Context;
 import java.util.ArrayList;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.InputStream;
 import android.content.res.AssetManager;
@@ -43,13 +45,12 @@ public class Professor {
     }
 
     public void addReview(Review profReview){
-        if(profReview == null)
-            return;
         if(profReview != null)
             profReviews.add(profReview);
     }
 
-    public void loadProfessors(Context context){
+    public static Map<String, Professor> loadProfessors(Context context){
+        Map<String, Professor> professorsMap = new HashMap<>();
         AssetManager manager = context.getAssets();
         try{
             InputStream file = manager.open("SampleRRData.csv");
@@ -58,13 +59,29 @@ public class Professor {
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] tokens = line.split(",");
-                //Professor professor = new Professor(tokens[0], Double.parseDouble(tokens[1]));
+                String profName = tokens[0].trim();
+                double overallRating = Double.parseDouble(tokens[1].trim());
+                String courseNum = tokens[2].trim();
+                String courseName = tokens[3].trim();
+                int difficultyRating = Integer.parseInt(tokens[4].trim());
+                int courseRating = Integer.parseInt(tokens[5].trim());
+                String courseGrade = tokens[6].trim();
+                boolean mandatoryClass = Boolean.parseBoolean(tokens[7].trim());
+                boolean takeClassAgain = Boolean.parseBoolean(tokens[8].trim());
+                String reviewWriteup = tokens[9].trim();
 
-                //Review profReview = new Review(tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
+                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating));
+
+                Review profReview = new Review(courseNum, courseName, professor, difficultyRating, courseRating, courseGrade, mandatoryClass, takeClassAgain, reviewWriteup);
+                assert professor != null;
+                professor.addReview(profReview);
+
+                professorsMap.putIfAbsent(profName, professor);
             }
         }catch(IOException e){
             e.printStackTrace();
         }
+        return professorsMap;
     }
 
     //returns average of overall ratings
