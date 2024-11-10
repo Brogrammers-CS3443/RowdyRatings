@@ -60,7 +60,7 @@ public class Professor {
                 String[] tokens = line.split(",");
                 Professor professor = new Professor(tokens[0], Double.parseDouble(tokens[1]));
 
-                Review profReview = new Review(tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
+                //Review profReview = new Review(tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9], tokens[10]);
             }
         }catch(IOException e){
             e.printStackTrace();
