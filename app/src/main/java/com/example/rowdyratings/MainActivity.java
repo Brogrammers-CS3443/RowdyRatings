@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    launchActivity();
+                    launchSearchProfessorActivity();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void launchActivity(){
+    private void launchSearchProfessorActivity(){
         Intent intent = new Intent(this, SearchProfessorActivity.class);
         startActivity(intent);
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rowdy Ratings</string>
+    <string name="search_professor_name">Enter Professor Name</string>
 </resources>

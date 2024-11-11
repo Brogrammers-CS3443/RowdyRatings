@@ -7,20 +7,20 @@ public class Review {
     private int difficultyRating;
     private int courseRating;
     private String courseGrade;
-    private String reviewWriteup;
     private boolean mandatoryClass;
     private boolean takeClassAgain;
+    private String reviewWriteup;
 
-    public Review(String courseNum, String courseName, Professor professor, int difficultyRating, int courseRating, String courseGrade, String reviewWriteup, boolean mandatoryClass, boolean takeClassAgain) {
+    public Review(String courseNum, String courseName, Professor professor, int difficultyRating, int courseRating, String courseGrade, boolean mandatoryClass, boolean takeClassAgain, String reviewWriteup) {
         this.courseNum = courseNum;
         this.courseName = courseName;
         this.professor = professor;
         this.difficultyRating = difficultyRating;
         this.courseRating = courseRating;
         this.courseGrade = courseGrade;
-        this.reviewWriteup = reviewWriteup;
         this.mandatoryClass = mandatoryClass;
         this.takeClassAgain = takeClassAgain;
+        this.reviewWriteup = reviewWriteup;
     }
 
     public String getCourseNum() {
