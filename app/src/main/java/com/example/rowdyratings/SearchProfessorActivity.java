@@ -64,18 +64,17 @@ public class SearchProfessorActivity extends AppCompatActivity {
         professorButton.setText(professor.getProfName());
 
         professorButton.setOnClickListener(view -> {
-            Intent intent = new Intent(SearchProfessorActivity.this, ProfessorReviewsActivity.class);
+            Intent intent = new Intent(SearchProfessorActivity.this, ViewProfessorActivity.class);
             intent.putExtra("professorName", professor.getProfName());
             startActivity(intent);
-            launchViewProfActivity();
+            //launchViewProfActivity();
         });
 
         //added button
         searchResultsContainer.addView(professorButton);
     }
-
-    private void launchViewProfActivity(){
+    /*private void launchViewProfActivity(){
         Intent intent = new Intent(this, ViewProfessorActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
