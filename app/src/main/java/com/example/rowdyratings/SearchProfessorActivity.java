@@ -67,10 +67,15 @@ public class SearchProfessorActivity extends AppCompatActivity {
             Intent intent = new Intent(SearchProfessorActivity.this, ProfessorReviewsActivity.class);
             intent.putExtra("professorName", professor.getProfName());
             startActivity(intent);
+            launchViewProfActivity();
         });
 
         //added button
         searchResultsContainer.addView(professorButton);
     }
 
+    private void launchViewProfActivity(){
+        Intent intent = new Intent(this, ViewProfessorActivity.class);
+        startActivity(intent);
+    }
 }

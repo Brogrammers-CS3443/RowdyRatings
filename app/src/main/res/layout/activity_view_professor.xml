@@ -32,6 +32,7 @@
             android:background="#FAF7F7"
             android:gravity="center"
             android:textSize="20sp"
+            android:text="Hend Alkitawwi"
             tools:text="Hend Alkitawwi" />
 
         <LinearLayout
@@ -76,6 +77,7 @@
                     android:padding="20dp"
                     android:textColor="#FFFEFE"
                     android:textSize="25sp"
+                    android:text="4.0 / 5"
                     tools:text="4.0 / 5" />
 
                 <TextView
@@ -85,6 +87,7 @@
                     android:textColor="#FFFEFE"
                     android:textSize="25sp"
                     android:padding="20dp"
+                    android:text="76%"
                     tools:text="76%"/>
                 <TextView
                     android:id="@+id/text3"
@@ -93,6 +96,7 @@
                     android:textColor="#FFFEFE"
                     android:textSize="25sp"
                     android:padding="20dp"
+                    android:text="3.0"
                     tools:text="3.0"/>
             </LinearLayout>
 
@@ -109,6 +113,7 @@
                     android:textColor="#FFFEFE"
                     android:textSize="20sp"
                     android:padding="10dp"
+                    android:text="Rating"
                     tools:text="Rating"/>
 
                 <TextView
@@ -118,6 +123,7 @@
                     android:textColor="#FFFEFE"
                     android:textSize="17sp"
                     android:padding="10dp"
+                    android:text="Would Take Again"
                     tools:text="Would Take Again"/>
 
                 <TextView
@@ -127,6 +133,7 @@
                     android:padding="10dp"
                     android:textColor="#FFFEFE"
                     android:textSize="15sp"
+                    android:text="Level of Difficulty"
                     tools:text="Level of Difficulty" />
             </LinearLayout>
         </LinearLayout>
