@@ -144,4 +144,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="CS 3443                                                      June 2nd, 2024" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 </LinearLayout>
