@@ -25,7 +25,6 @@ public class ViewProfessorActivity extends AppCompatActivity {
         FloatingActionButton reviewButton = findViewById(R.id.floatingActionButton);
 
         reviewButton.setOnClickListener(new View.OnClickListener(){
-
             public void onClick(View v){
                 launchProfessorReviewsActivity();
             }
@@ -35,7 +34,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
     }
 
     private void launchProfessorReviewsActivity(){
-        Intent intent = new Intent(this, ProfessorReviewsActivity.class);
+        Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);
     }
 }

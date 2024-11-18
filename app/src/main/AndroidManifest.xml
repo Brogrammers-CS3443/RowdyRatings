@@ -16,9 +16,6 @@
             android:name=".CreateReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfessorReviewsActivity"
-            android:exported="false" />
-        <activity
             android:name=".ViewProfessorActivity"
             android:exported="false" />
         <activity
