@@ -8,6 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+//DO NOT USE, NEED TO DELETE
 public class ProfessorReviewsActivity extends AppCompatActivity {
 
     @Override

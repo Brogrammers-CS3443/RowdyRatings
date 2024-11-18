@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
@@ -61,7 +62,7 @@ public class SearchProfessorActivity extends AppCompatActivity {
     private void displayProfessors(Professor professor){
         //create a button for the found professor
         Button professorButton = new Button(this);
-        professorButton.setText(professor.getProfName());
+        professorButton.setText(professor.getProfName() + "      Overall Rating: " + professor.getOverallRating());
 
         professorButton.setOnClickListener(view -> {
             Intent intent = new Intent(SearchProfessorActivity.this, ViewProfessorActivity.class);
@@ -72,6 +73,9 @@ public class SearchProfessorActivity extends AppCompatActivity {
 
         //added button
         searchResultsContainer.addView(professorButton);
+        professorButton.setLayoutParams(new LinearLayout.LayoutParams(800, 150));
+        professorButton.setBackgroundColor(getResources().getColor(R.color.utsaOrange));
+        professorButton.setCompoundDrawablePadding(100);
     }
     /*private void launchViewProfActivity(){
         Intent intent = new Intent(this, ViewProfessorActivity.class);
