@@ -31,8 +31,8 @@
             android:layout_height="67dp"
             android:background="#FAF7F7"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="Hend Alkitawwi"
+            android:textSize="20sp"
             tools:text="Hend Alkitawwi" />
 
         <LinearLayout
@@ -43,11 +43,13 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="0dp">
+
             <Button
                 android:id="@+id/courseButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CS3443" />
+
             <Button
                 android:id="@+id/courseButton2"
                 android:layout_width="wrap_content"
@@ -63,11 +65,11 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="0dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -75,29 +77,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
+                    android:text="4.0 / 5"
                     android:textColor="#FFFEFE"
                     android:textSize="25sp"
-                    android:text="4.0 / 5"
                     tools:text="4.0 / 5" />
 
                 <TextView
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFFEFE"
-                    android:textSize="25sp"
                     android:padding="20dp"
                     android:text="76%"
-                    tools:text="76%"/>
+                    android:textColor="#FFFEFE"
+                    android:textSize="25sp"
+                    tools:text="76%" />
+
                 <TextView
                     android:id="@+id/text3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFFEFE"
-                    android:textSize="25sp"
                     android:padding="20dp"
                     android:text="3.0"
-                    tools:text="3.0"/>
+                    android:textColor="#FFFEFE"
+                    android:textSize="25sp"
+                    tools:text="3.0" />
             </LinearLayout>
 
             <LinearLayout
@@ -110,33 +113,34 @@
                     android:id="@+id/overallRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFFEFE"
-                    android:textSize="20sp"
                     android:padding="10dp"
                     android:text="Rating"
-                    tools:text="Rating"/>
+                    android:textColor="#FFFEFE"
+                    android:textSize="20sp"
+                    tools:text="Rating" />
 
                 <TextView
                     android:id="@+id/wouldTakeAgain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFFEFE"
-                    android:textSize="17sp"
                     android:padding="10dp"
                     android:text="Would Take Again"
-                    tools:text="Would Take Again"/>
+                    android:textColor="#FFFEFE"
+                    android:textSize="17sp"
+                    tools:text="Would Take Again" />
 
                 <TextView
                     android:id="@+id/levelDifficulty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:text="Level of Difficulty"
                     android:textColor="#FFFEFE"
                     android:textSize="15sp"
-                    android:text="Level of Difficulty"
                     tools:text="Level of Difficulty" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
     <ScrollView
@@ -157,91 +161,98 @@
                 android:id="@+id/courseDate1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:text="CS 3443                                                      June 2nd, 2024" />
+                android:text="CS 3443                                                      June 2nd, 2024"
+                android:textColor="#FFFEFE" />
 
             <TextView
                 android:id="@+id/review1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
                 android:text="Rating                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
-                        \nDifficulty\n2.0 \t \t\t\t\t\t\tGreat Class. Lectures are concise and straight to the \t\t\t\t\t\t\t\t\t\tpoint" />
+                        \nDifficulty\n2.0 \t \t\t\t\t\t\tGreat Class. Lectures are concise and straight to the \t\t\t\t\t\t\t\t\t\tpoint"
+                android:textColor="#FFFEFE" />
 
             <TextView
                 android:id="@+id/courseDate2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:text="CS 3443                                                      July 13th, 2024" />
+                android:text="CS 3443                                                      July 13th, 2024"
+                android:textColor="#FFFEFE" />
+
             <TextView
                 android:id="@+id/review2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:textSize="17sp"
                 android:padding="10dp"
-                android:text="Would Take Again"
-                tools:text="Rating                                                                                        \n3.5 \tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
-                        \nDifficulty\n1.0 \t Course was overall pretty easy. Just make sure to come to class!"/>
+                android:text="Rating:                                                                                        \n3.5 \t\t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+                        \nDifficulty:\n1.0 \t\t\t\t\t\t\t Course was overall pretty easy. Just make sure to come to class!"
+                android:textColor="#FFFEFE"
+                android:textSize="17sp"
+                 />
+
             <TextView
                 android:id="@+id/courseDate3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:text="CS 3443                                                      March 29th, 2024" />
+                android:text="CS 3443                                                      March 29th, 2024"
+                android:textColor="#FFFEFE" />
+
             <TextView
                 android:id="@+id/review3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:textSize="17sp"
                 android:padding="10dp"
-                android:text="Would Take Again"
-                tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A-
-                        \nDifficulty\n4.0 \t Tests are somewhat hard. Quizzes are pretty easy. Start projects early"/>
+                android:text="Rating:                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: A-
+                        \nDifficulty:\n4.0 \t\t\t\t\t Tests are somewhat hard. Quizzes are pretty easy. Start projects early"
+                android:textColor="#FFFEFE"
+                android:textSize="17sp"
+                 />
+
             <TextView
                 android:id="@+id/courseDate4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:text="CS 3443                                                      December 20th, 2024" />
+                android:text="CS 3443                                                      December 20th, 2024"
+                android:textColor="#FFFEFE" />
+
             <TextView
                 android:id="@+id/review4"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:textSize="17sp"
                 android:padding="10dp"
-                android:text="Would Take Again"
-                tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A
-                        \nDifficulty\n2.0 \t Great Class. Lectures are concise and straight to the point"/>
+                android:text="Rating:                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: A
+                        \nDifficulty:\n2.0 \t\t\t\t\t\t Great Class. Lectures are concise and straight to the point"
+                android:textColor="#FFFEFE"
+                android:textSize="17sp"
+                 />
+
             <TextView
                 android:id="@+id/courseDate5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:text="CS 3443                                                      Octomber 5th, 2024" />
+                android:text="CS 3443                                                      Octomber 5th, 2024"
+                android:textColor="#FFFEFE" />
+
             <TextView
                 android:id="@+id/review5"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFEFE"
                 android:background="#112266"
-                android:textSize="17sp"
                 android:padding="10dp"
-                android:text="Would Take Again"
-                tools:text="Rating                                                                                        \n5.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A+
-                        \nDifficulty\n1.0 \t  Great experience. Open note quizzes and labs are engaging!"/>
+                android:text="Rating:                                                                                        \n5.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: A+
+                        \nDifficulty:\n1.0 \t\t\t\t\t  Great experience. Open note quizzes and labs are engaging!"
+                android:textColor="#FFFEFE"
+                android:textSize="17sp"
+                 />
         </LinearLayout>
     </ScrollView>
 
@@ -250,6 +261,7 @@
         android:layout_height="wrap_content"
         android:background="#112266"
         android:padding="12dp">
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="match_parent"
