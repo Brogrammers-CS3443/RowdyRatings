@@ -139,46 +139,124 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/reviewButton1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFEFE"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#112266"
-        android:text="CS 3443                                                      June 2nd, 2024" />
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/reviewButton2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFEFE"
-        android:background="#112266"
-        android:text="Rating                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+
+        <LinearLayout
+            android:id="@+id/ll_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/courseDate1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="CS 3443                                                      June 2nd, 2024" />
+
+            <TextView
+                android:id="@+id/review1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="Rating                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
                         \nDifficulty\n2.0 \t \t\t\t\t\t\tGreat Class. Lectures are concise and straight to the \t\t\t\t\t\t\t\t\t\tpoint" />
 
-    <TextView
-        android:id="@+id/reviewButton3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFEFE"
-        android:background="#112266"
-        android:text="CS 3443                                                      July 13th, 2024" />
-    <TextView
-        android:id="@+id/review2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFEFE"
-        android:background="#112266"
-        android:textSize="17sp"
-        android:padding="10dp"
-        android:text="Would Take Again"
-        tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+            <TextView
+                android:id="@+id/courseDate2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="CS 3443                                                      July 13th, 2024" />
+            <TextView
+                android:id="@+id/review2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:textSize="17sp"
+                android:padding="10dp"
+                android:text="Would Take Again"
+                tools:text="Rating                                                                                        \n3.5 \tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+                        \nDifficulty\n1.0 \t Course was overall pretty easy. Just make sure to come to class!"/>
+            <TextView
+                android:id="@+id/courseDate3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="CS 3443                                                      March 29th, 2024" />
+            <TextView
+                android:id="@+id/review3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:textSize="17sp"
+                android:padding="10dp"
+                android:text="Would Take Again"
+                tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A-
+                        \nDifficulty\n4.0 \t Tests are somewhat hard. Quizzes are pretty easy. Start projects early"/>
+            <TextView
+                android:id="@+id/courseDate4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="CS 3443                                                      December 20th, 2024" />
+            <TextView
+                android:id="@+id/review4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:textSize="17sp"
+                android:padding="10dp"
+                android:text="Would Take Again"
+                tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A
                         \nDifficulty\n2.0 \t Great Class. Lectures are concise and straight to the point"/>
+            <TextView
+                android:id="@+id/courseDate5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:text="CS 3443                                                      Octomber 5th, 2024" />
+            <TextView
+                android:id="@+id/review5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFEFE"
+                android:background="#112266"
+                android:textSize="17sp"
+                android:padding="10dp"
+                android:text="Would Take Again"
+                tools:text="Rating                                                                                        \n5.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: A+
+                        \nDifficulty\n1.0 \t  Great experience. Open note quizzes and labs are engaging!"/>
+        </LinearLayout>
+    </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        android:background="#112266"
+        android:padding="12dp">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+    </RelativeLayout>
+
 </LinearLayout>
+
