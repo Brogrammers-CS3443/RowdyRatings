@@ -139,11 +139,41 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/reviewButton1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FFFEFE"
+        android:background="#112266"
         android:text="CS 3443                                                      June 2nd, 2024" />
+
+    <TextView
+        android:id="@+id/reviewButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFEFE"
+        android:background="#112266"
+        android:text="Rating                                                                                        \n4.0 \t\t\t\t\t\t\tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+                        \nDifficulty\n2.0 \t \t\t\t\t\t\tGreat Class. Lectures are concise and straight to the \t\t\t\t\t\t\t\t\t\tpoint" />
+
+    <TextView
+        android:id="@+id/reviewButton3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFEFE"
+        android:background="#112266"
+        android:text="CS 3443                                                      July 13th, 2024" />
+    <TextView
+        android:id="@+id/review2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFEFE"
+        android:background="#112266"
+        android:textSize="17sp"
+        android:padding="10dp"
+        android:text="Would Take Again"
+        tools:text="Rating                                                                                        \n4.0 \tAttendance: Mandatory, Would Take Again: Yes, Grade: B+
+                        \nDifficulty\n2.0 \t Great Class. Lectures are concise and straight to the point"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
