@@ -49,12 +49,18 @@ public class SearchProfessorActivity extends AppCompatActivity {
     private void performProfessorSearch(String professorName){
         searchResultsContainer.removeAllViews(); // Clear previous search results
 
-        //checks if the professor exists in the map
-        if (professorsMap.containsKey(professorName)) {
-            Professor professor = professorsMap.get(professorName);
-            displayProfessors(professor);
-        } else {
-            //displays a Toast message when no professor is found
+        boolean isMatchFound = false;
+
+        for (String key : professorsMap.keySet()) {
+            if (key.toLowerCase().contains(professorName.toLowerCase())) { // Case-insensitive partial matching
+                Professor professor = professorsMap.get(key);
+                displayProfessors(professor);
+                isMatchFound = true;
+            }
+        }
+
+        if (!isMatchFound) {
+            // Display a Toast message when no professor is found
             Toast.makeText(this, "No results found for \"" + professorName + "\"", Toast.LENGTH_SHORT).show();
         }
     }
