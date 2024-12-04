@@ -6,7 +6,10 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -67,7 +70,9 @@ public class SearchProfessorActivity extends AppCompatActivity {
     private void displayProfessors(Professor professor){
         //create a button for the found professor
         Button professorButton = new Button(this);
-        professorButton.setText(professor.getProfName() + "      Overall Rating: " + professor.getOverallRating());
+        String profSubDescription = professor.getProfName() + "         Overall Rating: " + professor.getOverallRating()+"\n" +
+                                    professor.getProfReviews().size() + " ratings";
+        professorButton.setText(profSubDescription);
 
         professorButton.setOnClickListener(view -> {
             Intent intent = new Intent(SearchProfessorActivity.this, ViewProfessorActivity.class);
@@ -78,8 +83,13 @@ public class SearchProfessorActivity extends AppCompatActivity {
 
         //added button
         searchResultsContainer.addView(professorButton);
-        professorButton.setLayoutParams(new LinearLayout.LayoutParams(800, 150));
-        professorButton.setBackgroundColor(getResources().getColor(R.color.utsaOrange));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                800,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.gravity = Gravity.CENTER;
+        professorButton.setLayoutParams(layoutParams);
+        professorButton.setBackgroundResource(R.drawable.orange_rounded_corners);
         professorButton.setCompoundDrawablePadding(100);
     }
     /*private void launchViewProfActivity(){

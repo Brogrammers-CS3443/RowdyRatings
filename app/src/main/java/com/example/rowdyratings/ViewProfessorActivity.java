@@ -64,7 +64,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
             TextView professorCourseTextView = new TextView(this);
             professorCourseTextView.setLayoutParams(new ViewGroup.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
             professorCourseTextView.setBackgroundResource(R.drawable.rounded_corners);
@@ -74,7 +74,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
             TextView professorReviewTextView = new TextView(this);
             professorReviewTextView.setLayoutParams(new ViewGroup.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             ));
             professorReviewTextView.setBackgroundResource(R.drawable.rounded_corners);

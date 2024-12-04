@@ -31,7 +31,7 @@
         android:layout_height="400dp"
         android:layout_marginTop="196dp"
         android:background="@color/utsaBlue"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
