@@ -121,7 +121,8 @@
         android:layout_width="match_parent"
         android:layout_height="528dp"
         android:background="@color/utsaBlue"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:contentDescription="Holds reviews for professor">
 
         <LinearLayout
             android:id="@+id/professorReviewHolder"
@@ -142,6 +143,7 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="Click to add review"
             android:clickable="true"
             app:srcCompat="@android:drawable/ic_menu_add" />
     </RelativeLayout>
