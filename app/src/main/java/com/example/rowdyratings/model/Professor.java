@@ -1,6 +1,10 @@
 package com.example.rowdyratings.model;
 
+import android.app.Activity;
 import android.content.Context;
+
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,16 +12,22 @@ import java.util.Map;
 import java.util.Scanner;
 import java.io.InputStream;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 public class Professor {
     private String profName;
     private ArrayList<Review> profReviews;
     private double overallRating;
 
-    public Professor(String profName, ArrayList<Review> profReviews, double overallRating) {
+    private final Context context;
+
+    private static final String TAG = "Professor";
+
+    public Professor(String profName, ArrayList<Review> profReviews, double overallRating, Context context) {
         this.profName = profName;
         this.profReviews = profReviews;
         this.overallRating = overallRating;
+        this.context = context;
     }
 
     public String getProfName() {
@@ -70,7 +80,7 @@ public class Professor {
                 boolean takeClassAgain = Boolean.parseBoolean(tokens[8].trim());
                 String reviewWriteup = tokens[9].trim();
 
-                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating));
+                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating, new Activity()));
 
                 Review profReview = new Review(courseNum, courseName, professor, difficultyRating, courseRating, courseGrade, mandatoryClass, takeClassAgain, reviewWriteup);
                 assert professor != null;
@@ -84,6 +94,81 @@ public class Professor {
         return professorsMap;
     }
 
+    //create a function that will attempt to read from file in avd memory
+    //if file does not exist we will create that file and call a function to write to the files in
+    //avd memory
+    public void initializeFilesAVD(){
+        try{
+            Log.i(TAG,"Atempting to read from file...");
+            InputStream professorNamesFile = context.openFileInput("professorNames.csv");
+            Log.i(TAG,"SUCCESS");
+            InputStream professorReviewsFile = context.openFileInput("professorReviews.csv");
+
+            professorNamesFile.close();
+            professorReviewsFile.close();
+
+            //call method to read through csv and write to it
+            loadProfessorNamesFromCSV();
+
+        }catch(IOException e1){
+            Log.i(TAG,"AVD file is not found. Creating one...");
+
+            try{
+                OutputStream profNameOutputFile = context.openFileOutput("professorNames.csv", Context.MODE_PRIVATE);
+                profNameOutputFile.close();
+
+                OutputStream professorReviewsOutputFile = context.openFileOutput("professorReviews.csv", Context.MODE_PRIVATE);
+                professorReviewsOutputFile.close();
+
+                //call methods to load from the csv in assets
+            }catch(IOException e2){
+                Log.e(TAG,"Failed ot initialize avd");
+            }
+        }
+    }
+
+    //create a method that will open the professorName.csv file in assets and write to it in avd memory
+    public void loadProfessorNamesFromCSV(){
+        //get the asseets manager from our assets directory
+        AssetManager manager = context.getAssets();
+        //Create log  message to see if the load method is called correctly
+        Log.d(TAG,"Start of the loading from the csv");
+        Scanner scan = null;
+        OutputStream out = null;
+
+        //Create a string for the professorName.csv file
+        String professorNamesCSV = "professorNames.csv";
+
+        try{
+            //create an input stream and assign it to the professNames.csv
+            InputStream profNameFile = manager.open(professorNamesCSV);
+
+            scan = new Scanner(profNameFile);
+
+            //skip the first line
+            scan.nextLine();
+
+            out = context.openFileOutput("professorNames.csv", Context.MODE_PRIVATE);
+            Log.i(TAG, "SUCCESS");
+
+            while(scan.hasNextLine()){
+                String professorName = scan.nextLine().trim();
+                //if professorName line is not empty then we will write to our file in avd
+                if(!professorName.isEmpty()){
+                    out.write(professorName.getBytes(StandardCharsets.UTF_8));
+                    out.write("\n".getBytes(StandardCharsets.UTF_8));
+                    Log.i(TAG,"After adding the professor: " + professorName);
+                }
+
+            }
+            Log.i(TAG,"Added all of the prof names to file in avd successfully!");
+
+        out.close();
+        scan.close();
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     //returns average of overall ratings
     public double calcOverallRating(){
         double overallRating = 0;

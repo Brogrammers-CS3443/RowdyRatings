@@ -6,6 +6,8 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.rowdyratings.model.Professor;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button searchBtn = findViewById(R.id.searchBtn);
+
+        //Create professor and load it to for testing purposes
+        Professor newProfessor = new Professor("Hend Alkittawi", null, 2.0, this);
+        newProfessor.initializeFilesAVD();
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

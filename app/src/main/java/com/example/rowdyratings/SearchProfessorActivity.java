@@ -34,6 +34,8 @@ public class SearchProfessorActivity extends AppCompatActivity {
 
         professorsMap = Professor.loadProfessors(this);
 
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
