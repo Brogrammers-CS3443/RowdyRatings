@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.io.InputStream;
 import android.content.res.AssetManager;
+import android.icu.util.Output;
 import android.util.Log;
 
 public class Professor {
@@ -175,12 +176,35 @@ public class Professor {
         String courseNum = newReview.getCourseNum();
         double rating = newReview.getCourseRating();
         double difficulty = newReview.getDifficultyRating();
+        String grade = newReview.getCourseGrade();
         boolean mandatory = newReview.isMandatoryClass();
         boolean wouldTakeAgain = newReview.isTakeClassAgain();
         String review = newReview.getReviewWriteup();
 
         //create logic for writing these values to avd
+        try{
+            Log.i(TAG,"Attempting to write to file");
 
+            OutputStream out = context.openFileOutput("professorReviews.csv", Context.MODE_APPEND);
+            out.write(profName.getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(courseNum.getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(String.valueOf(rating).getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(String.valueOf(difficulty).getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(grade.getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(String.valueOf(mandatory).getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(String.valueOf(wouldTakeAgain).getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(review.getBytes(StandardCharsets.UTF_8));
+            out.write("\n".getBytes(StandardCharsets.UTF_8));
+        }catch (IOException e){
+            Log.i(TAG, "Failed to write to file. " );
+        }
     }
     public void loadProfessorReviewsFromCSV(){
         //get the asseets manager from our assets directory

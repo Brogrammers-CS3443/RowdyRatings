@@ -7,6 +7,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rowdyratings.model.Professor;
+import com.example.rowdyratings.model.Review;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
         //Create professor and load it to for testing purposes
         Professor newProfessor = new Professor("Hend Alkittawi", null, 2.0, this);
         newProfessor.initializeFilesAVD();
+
+
+        //for testing purposes, create a review object and pass it to the newProfessors write review method
+        Review testReview = new Review("3443", "Applications Programming", newProfessor
+        , 2.0, 4.0, "A+", true, true, "Great class, would" +
+                " love to take again!!! This is a test review!");
+
+        newProfessor.writeReview(testReview);
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
