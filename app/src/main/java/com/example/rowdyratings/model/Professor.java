@@ -109,7 +109,7 @@ public class Professor {
 
             //call method to read through csv and write to it
             loadProfessorNamesFromCSV();
-
+            loadProfessorReviewsFromCSV();
         }catch(IOException e1){
             Log.i(TAG,"AVD file is not found. Creating one...");
 
@@ -145,8 +145,7 @@ public class Professor {
 
             scan = new Scanner(profNameFile);
 
-            //skip the first line
-            scan.nextLine();
+
 
             out = context.openFileOutput("professorNames.csv", Context.MODE_PRIVATE);
             Log.i(TAG, "SUCCESS");
@@ -169,6 +168,52 @@ public class Professor {
             throw new RuntimeException(e);
         }
     }
+
+    //create a method that will open the professorReview.csv file in assets and write to it in avd memory
+    public void loadProfessorReviewsFromCSV(){
+        //get the asseets manager from our assets directory
+        AssetManager manager = context.getAssets();
+        //Create log  message to see if the load method is called correctly
+        Log.d(TAG,"Start of the loading from the csv");
+        Scanner scanner = null;
+        OutputStream out2 = null;
+
+        //Create a string for the professorName.csv file
+        String professorReviewCSV = "professorReviews.csv";
+
+        try{
+            //create an input stream and assign it to the professNames.csv
+            InputStream profNameFile = manager.open(professorReviewCSV);
+
+            scanner = new Scanner(profNameFile);
+
+
+
+            out2 = context.openFileOutput("professorReviews.csv", Context.MODE_PRIVATE);
+            Log.i(TAG, "SUCCESS");
+
+            //write the header format to the file in avd
+            String professorReviewHeaderFormat = scanner.nextLine();
+            out2.write(professorReviewHeaderFormat.getBytes(StandardCharsets.UTF_8));
+            out2.write("\n".getBytes(StandardCharsets.UTF_8));
+            Log.i(TAG,"After adding the professor review: " + professorReviewHeaderFormat);
+
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+
+                out2.write(line.getBytes(StandardCharsets.UTF_8));
+                out2.write("\n".getBytes(StandardCharsets.UTF_8));
+            }
+            Log.i(TAG,"Added all of the prof names to file in avd successfully!");
+
+            out2.close();
+            scanner.close();
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     //returns average of overall ratings
     public double calcOverallRating(){
         double overallRating = 0;
