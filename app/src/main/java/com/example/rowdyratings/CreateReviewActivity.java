@@ -17,5 +17,8 @@ public class CreateReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_review);
 
 
+
+
+        //pretend on click
     }
 }

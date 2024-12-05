@@ -170,6 +170,18 @@ public class Professor {
     }
 
     //create a method that will open the professorReview.csv file in assets and write to it in avd memory
+    public void writeReview(Review newReview){
+        String profName = newReview.getProfessor().getProfName();
+        String courseNum = newReview.getCourseNum();
+        double rating = newReview.getCourseRating();
+        double difficulty = newReview.getDifficultyRating();
+        boolean mandatory = newReview.isMandatoryClass();
+        boolean wouldTakeAgain = newReview.isTakeClassAgain();
+        String review = newReview.getReviewWriteup();
+
+        //create logic for writing these values to avd
+
+    }
     public void loadProfessorReviewsFromCSV(){
         //get the asseets manager from our assets directory
         AssetManager manager = context.getAssets();
@@ -212,6 +224,8 @@ public class Professor {
             throw new RuntimeException(e);
         }
     }
+
+    //create a function that adds a review to avd
 
 
     //returns average of overall ratings
