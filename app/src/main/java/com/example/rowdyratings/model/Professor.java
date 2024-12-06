@@ -93,7 +93,8 @@ public class Professor {
 
                 String profName = line;
 
-                Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), 0, new Activity()));
+                //Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), 0, new Activity()));
+                Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), 0, context));
                 professorsMap.putIfAbsent(profName.trim(), professor);
 
                 professorsMap.putIfAbsent(profName, professor);
@@ -215,6 +216,7 @@ public class Professor {
             out.write(",".getBytes(StandardCharsets.UTF_8));
             out.write(review.getBytes(StandardCharsets.UTF_8));
             out.write("\n".getBytes(StandardCharsets.UTF_8));
+            out.close();
         }catch (IOException e){
             Log.i(TAG, "Failed to write to file. " );
         }

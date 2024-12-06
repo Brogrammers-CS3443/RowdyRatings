@@ -34,7 +34,7 @@ public class CreateReviewActivity extends AppCompatActivity {
 
 
 
-        Log.i(TAG, "Start of the create review activity");
+        Log.d(TAG, "Start of the create review activity");
 
         //create EditText boxes
         EditText editClassNumber = findViewById(R.id.classNumBox);
@@ -72,6 +72,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 boolean wouldTakeAgain = wouldTakeAgainCheckBox.isChecked();
 
                 Professor professor = findProfessorByName(professorName);
+                //Log.i(TAG,"Start of the on click method...");
 
                 if(professor == null){
                     Log.e(TAG, "Error! Professor was not found !!!" + professorName);
@@ -81,8 +82,26 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //Create and add a new review based on the input data
                 Review newReview = new Review(classNumber, professor, difficultyRating, overallCourseRating, grade,
                         classMandatory, wouldTakeAgain, reviewText);
-                professor.writeReview(newReview);//write review is the only thing causing the crash
-                professor.addReview(newReview);
+
+                Log.i(TAG, "Review was added: " + newReview.getReviewWriteup());
+
+                Log.i(TAG,"Professor retrieved successfully! Professor retrieved: " + professor.getProfName());
+
+                //professor.writeReview(newReview);//write review is the only thing causing the crash
+                //for testing purposes, create a review object and pass it to the newProfessors write review method
+                Review testReview = new Review("3443", professor,  2.0, 4.0, "A+", true, true, "Great class, would" +
+                        " love to take again!!! This is a test review!");
+
+                professor.writeReview(testReview);
+                Log.i(TAG, "Added review for: " + professor.getProfName());
+
+                //professor.addReview(newReview);
+
+                //NOW ADD THE REAL REVIEW
+                Log.i(TAG,"Now adding the actual review for : " + professor.getProfName());
+                professor.writeReview(newReview);
+                Log.i(TAG,"Added the review successfully!");
+
 
             //    for(String key: professorsMap.keySet()){
 
@@ -119,7 +138,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //call the write review from the professor that is being passed
 
                 //at the end return to the professor activity page
-                launchViewProfessorActivity();
+                //launchViewProfessorActivity();
             }
         });
 
