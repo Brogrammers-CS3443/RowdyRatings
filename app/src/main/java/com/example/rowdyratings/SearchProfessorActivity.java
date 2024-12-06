@@ -50,13 +50,37 @@ public class SearchProfessorActivity extends AppCompatActivity {
         });
     }
 
-    private void performProfessorSearch(String professorName){
+//    private void performProfessorSearch(String professorName){
+//        searchResultsContainer.removeAllViews(); // Clear previous search results
+//
+//        boolean isMatchFound = false;
+//
+//        for (String key : professorsMap.keySet()) {
+//            if (key.toLowerCase().contains(professorName.toLowerCase())) { // Case-insensitive partial matching
+//                Professor professor = professorsMap.get(key);
+//                displayProfessors(professor);
+//                isMatchFound = true;
+//            }
+//        }
+//
+//        if (!isMatchFound) {
+//            // Display a Toast message when no professor is found
+//            Toast.makeText(this, "No results found for \"" + professorName + "\"", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+    //TEST FROM CHAT
+    private void performProfessorSearch(String professorName) {
         searchResultsContainer.removeAllViews(); // Clear previous search results
 
         boolean isMatchFound = false;
+        String trimmedQuery = professorName.trim().toLowerCase(); // Trim and lowercase search query
+
+        System.out.println("Searching for: " + trimmedQuery);
+        System.out.println("Available Professors: " + professorsMap.keySet());
 
         for (String key : professorsMap.keySet()) {
-            if (key.toLowerCase().contains(professorName.toLowerCase())) { // Case-insensitive partial matching
+            if (key.toLowerCase().contains(trimmedQuery)) { // Case-insensitive partial matching
                 Professor professor = professorsMap.get(key);
                 displayProfessors(professor);
                 isMatchFound = true;
@@ -68,6 +92,7 @@ public class SearchProfessorActivity extends AppCompatActivity {
             Toast.makeText(this, "No results found for \"" + professorName + "\"", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void displayProfessors(Professor professor){
         //create a button for the found professor

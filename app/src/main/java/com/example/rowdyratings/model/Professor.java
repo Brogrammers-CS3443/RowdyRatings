@@ -3,6 +3,8 @@ package com.example.rowdyratings.model;
 import android.app.Activity;
 import android.content.Context;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -60,40 +62,65 @@ public class Professor {
             profReviews.add(profReview);
     }
 
-    public static Map<String, Professor> loadProfessors(Context context){
+
+    public static Map<String, Professor> loadProfessors(Context context) {
         Map<String, Professor> professorsMap = new HashMap<>();
-        AssetManager manager = context.getAssets();
-        try{
-            InputStream file = manager.open("SampleRRData.csv");
-            Scanner scanner = new Scanner(file);
-            scanner.nextLine();
-            while(scanner.hasNextLine()){
+        String profFileName = "professorReviews.csv"; // Ensure this file exists in AVD internal storage
+
+        // Access the internal storage file
+        File internalProfFile = new File(context.getFilesDir(), profFileName);
+
+        // Check if the file exists
+        if (!internalProfFile.exists()) {
+            System.err.println("File does not exist in internal storage: " + internalProfFile.getAbsolutePath());
+            return professorsMap; // Return empty map if file is not found
+        }
+
+        try (InputStream file = new FileInputStream(internalProfFile);
+             Scanner scanner = new Scanner(file)) {
+
+            // Skip header line
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+
+            // Read and process each line
+            while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] tokens = line.split(",");
+
                 String profName = tokens[0].trim();
-                double overallRating = Double.parseDouble(tokens[1].trim());
-                String courseNum = tokens[2].trim();
-                String courseName = tokens[3].trim();
-                int difficultyRating = Integer.parseInt(tokens[4].trim());
-                int courseRating = Integer.parseInt(tokens[5].trim());
-                String courseGrade = tokens[6].trim();
-                boolean mandatoryClass = Boolean.parseBoolean(tokens[7].trim());
-                boolean takeClassAgain = Boolean.parseBoolean(tokens[8].trim());
-                String reviewWriteup = tokens[9].trim();
+                String courseNum = tokens[1].trim();
+                double overallRating = Double.parseDouble(tokens[2].trim());
+//                String courseName = tokens[3].trim();
+                double difficultyRating = Double.parseDouble(tokens[3].trim());
+//                int courseRating = Integer.parseInt(tokens[5].trim());
+                String courseGrade = tokens[4].trim();
+                boolean mandatoryClass = Boolean.parseBoolean(tokens[5].trim());
+                boolean takeClassAgain = Boolean.parseBoolean(tokens[6].trim());
+                String reviewWriteup = tokens[7].trim();
 
-                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating, new Activity()));
+                // Create or retrieve the Professor
+//                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating, new Activity()));
 
-                Review profReview = new Review(courseNum, courseName, professor, difficultyRating, courseRating, courseGrade, mandatoryClass, takeClassAgain, reviewWriteup);
-                assert professor != null;
+                //TEST FROM CHAT
+                Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), overallRating, new Activity()));
+                professorsMap.putIfAbsent(profName.trim(), professor);
+
+                // Create and add the Review
+                Review profReview = new Review(courseNum, professor, difficultyRating, courseGrade, mandatoryClass, takeClassAgain, reviewWriteup);
                 professor.addReview(profReview);
 
                 professorsMap.putIfAbsent(profName, professor);
+                System.out.println(professor);
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
         return professorsMap;
     }
+
 
     //create a function that will attempt to read from file in avd memory
     //if file does not exist we will create that file and call a function to write to the files in

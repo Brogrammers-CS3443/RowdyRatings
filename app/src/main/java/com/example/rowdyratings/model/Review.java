@@ -2,7 +2,6 @@ package com.example.rowdyratings.model;
 
 public class Review {
     private String courseNum;
-    private String courseName;
     private Professor professor;
     private double difficultyRating;
     private double courseRating;
@@ -11,9 +10,8 @@ public class Review {
     private boolean takeClassAgain;
     private String reviewWriteup;
 
-    public Review(String courseNum, String courseName, Professor professor, double difficultyRating, double courseRating, String courseGrade, boolean mandatoryClass, boolean takeClassAgain, String reviewWriteup) {
+    public Review(String courseNum, Professor professor, double difficultyRating, double courseRating, String courseGrade, boolean mandatoryClass, boolean takeClassAgain, String reviewWriteup) {
         this.courseNum = courseNum;
-        this.courseName = courseName;
         this.professor = professor;
         this.difficultyRating = difficultyRating;
         this.courseRating = courseRating;
@@ -23,20 +21,24 @@ public class Review {
         this.reviewWriteup = reviewWriteup;
     }
 
+    public Review(String courseNum, Professor professor, double difficultyRating, String courseGrade, boolean mandatoryClass, boolean takeClassAgain, String reviewWriteup) {
+        this.courseNum = courseNum;
+        this.professor = professor;
+        this.difficultyRating = difficultyRating;
+        this.courseGrade = courseGrade;
+        this.mandatoryClass = mandatoryClass;
+        this.takeClassAgain = takeClassAgain;
+        this.reviewWriteup = reviewWriteup;
+    }
+
+
+
     public String getCourseNum() {
         return courseNum;
     }
 
     public void setCourseNum(String courseNum) {
         this.courseNum = courseNum;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     public Professor getProfessor() {
