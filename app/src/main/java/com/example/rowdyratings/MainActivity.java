@@ -1,6 +1,7 @@
 package com.example.rowdyratings;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import androidx.activity.EdgeToEdge;
@@ -21,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button searchBtn = findViewById(R.id.searchBtn);
 
+
+        Professor newProfessor = new Professor("Hend Alkitawwi", null, 2.0, this);
+        Log.i("MainActivity", "After adding the new professor: " + newProfessor.getProfName());
+        newProfessor.initializeFilesAVD();
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override

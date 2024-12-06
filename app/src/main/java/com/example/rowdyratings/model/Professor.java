@@ -67,6 +67,9 @@ public class Professor {
         Map<String, Professor> professorsMap = new HashMap<>();
         String profFileName = "professorNames.csv"; //ensure file exists in AVD
 
+        //make sure the files are initialized
+
+
         //access internal storage file
         File internalProfFile = new File(context.getFilesDir(), profFileName);
 
@@ -102,6 +105,7 @@ public class Professor {
 
         return professorsMap;
     }
+
 
 
     //create a function that will attempt to read from file in avd memory

@@ -50,6 +50,7 @@ public class CreateReviewActivity extends AppCompatActivity {
         CheckBox classMandatoryCheckBox = findViewById(R.id.checkboxClassMandatory);
         CheckBox wouldTakeAgainCheckBox = findViewById(R.id.checkBoxTakeClassAgain);
 
+
         professorsMap = Professor.loadProfessors(this);
 
         //pretend on click
@@ -70,15 +71,40 @@ public class CreateReviewActivity extends AppCompatActivity {
                 boolean classMandatory = classMandatoryCheckBox.isChecked();
                 boolean wouldTakeAgain = wouldTakeAgainCheckBox.isChecked();
 
-                for(String key: professorsMap.keySet()){
+                Professor professor = findProfessorByName(professorName);
 
-                    if(key.equals(professorName)){
-
-                        Review newReview = new Review(classNumber,professorsMap.get(this) ,difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
-                        professorsMap.get(this).writeReview(newReview);//writes the review created
-                        professorsMap.get(this).addReview(newReview);//adds the review
-                    }
+                if(professor == null){
+                    Log.e(TAG, "Error! Professor was not found !!!" + professorName);
+                    return;
                 }
+
+                //Create and add a new review based on the input data
+                Review newReview = new Review(classNumber, professor, difficultyRating, overallCourseRating, grade,
+                        classMandatory, wouldTakeAgain, reviewText);
+                professor.writeReview(newReview);
+                professor.addReview(newReview);
+
+            //    for(String key: professorsMap.keySet()){
+
+            //        if(key.equals(professorName)){
+            //            Professor professor = professorsMap.get(professorName);
+            //            if(professor == null){
+            //                Log.e(TAG,"Professor not found: " + professorName);
+            //                return;
+            //            }
+            //            Review newReview = new Review(classNumber,professorsMap.get(this) ,difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
+            //            Log.i(TAG,"After creating the review: " + newReview.getReviewWriteup() + " " + newReview.getCourseGrade() + " " + newReview.getCourseNum() +
+            //                    " " + newReview.getProfessor() + "etc...");
+
+            //            System.out.println(newReview);
+                        //professorsMap.get(professorName).writeReview(newReview);//writes the review created
+                        //professorsMap.get(professorName).addReview(newReview);//adds the review
+
+                        //Review newReview = new Review(classNumber,professor,difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
+                        //professor.writeReview(newReview);//writes the review created
+                        //professor.addReview(newReview);//adds the review
+            //        }
+            //    }
 
                 Log.i(TAG, "classNumber: " + classNumber + " professorName: " + professorName + " grade recieved: " + grade
                         + " reviewText: " + reviewText + " difficultyRating: " + difficultyRating + " overallCourseRating: " + overallCourseRating
@@ -97,6 +123,16 @@ public class CreateReviewActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    //create a method that will iterate through the map and return the professor object
+    private Professor findProfessorByName(String profName){
+        for(String key: professorsMap.keySet()){
+            if(key.equalsIgnoreCase(profName)){
+                return professorsMap.get(key);
+            }
+        }
+        return null;
     }
     private void launchViewProfessorActivity(){
         Intent intent = new Intent(this, ViewProfessorActivity.class);

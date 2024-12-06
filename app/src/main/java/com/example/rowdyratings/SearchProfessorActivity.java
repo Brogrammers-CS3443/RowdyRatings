@@ -14,14 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Map;
 import com.example.rowdyratings.model.Professor;
-
+import com.example.rowdyratings.model.Review;
 
 
 public class SearchProfessorActivity extends AppCompatActivity {
     private Map<String, Professor> professorsMap;
     private LinearLayout searchResultsContainer;
+    private Professor professor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +31,18 @@ public class SearchProfessorActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search_professor);
 
+        ArrayList<Review> profReviews = new ArrayList<>();
+        professor = new Professor("Hend Alkittawi", profReviews,2.0,this);
+        professor.initializeFilesAVD();
+
         SearchView searchView = findViewById(R.id.professor_search_view);
         searchResultsContainer = findViewById(R.id.profContainer);
 
+
+
+
         professorsMap = Professor.loadProfessors(this);
+
 
 
 
