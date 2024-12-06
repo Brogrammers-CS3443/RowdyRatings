@@ -81,7 +81,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //Create and add a new review based on the input data
                 Review newReview = new Review(classNumber, professor, difficultyRating, overallCourseRating, grade,
                         classMandatory, wouldTakeAgain, reviewText);
-                professor.writeReview(newReview);
+                professor.writeReview(newReview);//write review is the only thing causing the crash
                 professor.addReview(newReview);
 
             //    for(String key: professorsMap.keySet()){
