@@ -81,14 +81,14 @@ public class CreateReviewActivity extends AppCompatActivity {
                 }
 
                 Log.i(TAG, "classNumber: " + classNumber + " professorName: " + professorName + " grade recieved: " + grade
-                + " reviewText: " + reviewText + " difficultyRating: " + difficultyRating + " overallCourseRating: " + overallCourseRating
-                + " classMandatory: " + classMandatory + " wouldTakeAagain: " + wouldTakeAgain);
+                        + " reviewText: " + reviewText + " difficultyRating: " + difficultyRating + " overallCourseRating: " + overallCourseRating
+                        + " classMandatory: " + classMandatory + " wouldTakeAagain: " + wouldTakeAgain);
 
 
                 //call function to loop through and find the professor object by the "String professorName"
 
 
-            //    Review newReview = new Review(classNumber,Professor testProf, difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
+                //    Review newReview = new Review(classNumber,Professor testProf, difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
 
                 //call the write review from the professor that is being passed
 
