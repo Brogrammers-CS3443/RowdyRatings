@@ -65,45 +65,33 @@ public class Professor {
 
     public static Map<String, Professor> loadProfessors(Context context) {
         Map<String, Professor> professorsMap = new HashMap<>();
-        String profFileName = "professorReviews.csv"; // Ensure this file exists in AVD internal storage
+        String profFileName = "professorNames.csv"; //ensure file exists in AVD
 
-        // Access the internal storage file
+        //access internal storage file
         File internalProfFile = new File(context.getFilesDir(), profFileName);
 
-        // Check if the file exists
+        //check if file exists
         if (!internalProfFile.exists()) {
             System.err.println("File does not exist in internal storage: " + internalProfFile.getAbsolutePath());
-            return professorsMap; // Return empty map if file is not found
+            return professorsMap; //return empty map if file not found
         }
 
         try (InputStream file = new FileInputStream(internalProfFile);
              Scanner scanner = new Scanner(file)) {
 
-            // Skip header line
+            //skip header line
             if (scanner.hasNextLine()) {
                 scanner.nextLine();
             }
 
-            // Read and process each line
+            //read and process each line
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] tokens = line.split(",");
 
-                String profName = tokens[0].trim();
-                String courseNum = tokens[1].trim();
-                double overallRating = Double.parseDouble(tokens[2].trim());
-                double difficultyRating = Double.parseDouble(tokens[3].trim());
-                String courseGrade = tokens[4].trim();
-                boolean mandatoryClass = Boolean.parseBoolean(tokens[5].trim());
-                boolean takeClassAgain = Boolean.parseBoolean(tokens[6].trim());
-                String reviewWriteup = tokens[7].trim();
+                String profName = line;
 
-                Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), overallRating, new Activity()));
+                Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), 0, new Activity()));
                 professorsMap.putIfAbsent(profName.trim(), professor);
-
-                // Create and add the Review
-                Review profReview = new Review(courseNum, professor, difficultyRating, courseGrade, mandatoryClass, takeClassAgain, reviewWriteup);
-                professor.addReview(profReview);
 
                 professorsMap.putIfAbsent(profName, professor);
                 System.out.println(professor);
