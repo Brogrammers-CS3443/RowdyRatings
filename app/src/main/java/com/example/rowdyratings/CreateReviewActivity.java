@@ -1,12 +1,21 @@
 package com.example.rowdyratings;
 
+import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.rowdyratings.model.Review;
+import com.google.android.material.chip.Chip;
 
 public class CreateReviewActivity extends AppCompatActivity {
 
@@ -18,7 +27,53 @@ public class CreateReviewActivity extends AppCompatActivity {
 
 
 
+        //create EditText boxes
+        EditText editClassNumber = findViewById(R.id.classNumBox);
+        EditText editProfessorName = findViewById(R.id.profNameBox);
+        EditText editGradeText = findViewById(R.id.courseGradeBox);
+        EditText editReviewText = findViewById(R.id.reviewWriteupBox);
+
+        //initialize the rating bars
+        RatingBar difficultyRatingBar = findViewById(R.id.difficultyRatingInput);
+        RatingBar overallCourseRatingBar = findViewById(R.id.courseRatingInput);
+
+        //initialize the chips
+        Chip chipClassMandatory = findViewById(R.id.chipMandatory);
+        Chip chipWouldTakeAgain = findViewById(R.id.chipTakeClassAgain);
+
 
         //pretend on click
+
+        //Create Submit review button
+        Button submitReviewButton = findViewById(R.id.button);
+        submitReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String classNumber = editClassNumber.getText().toString();
+                String professorName = editProfessorName.getText().toString();
+                String grade = editGradeText.getText().toString();
+                String reviewText= editReviewText.getText().toString();
+
+                double difficultyRating = (double) difficultyRatingBar.getRating();
+                double overallCourseRating = (double) overallCourseRatingBar.getRating();
+
+                boolean classMandatory = chipClassMandatory.isChecked();
+                boolean wouldTakeAgain = chipWouldTakeAgain.isChecked();
+
+                //call function to loop through and find the professor object by the "String professorName"
+
+            //    Review newReview = new Review(classNumber,Professor testProf, difficultyRating, overallCourseRating, grade, classMandatory, wouldTakeAgain, reviewText);
+
+                //call the write review from the professor that is being passed
+
+                //at the end return to the professor activity page
+            //    launchViewProfessorActivity();
+            }
+        });
+
+    }
+    private void launchViewProfessorActivity(){
+        Intent intent = new Intent(this, ViewProfessorActivity.class);
+        startActivity(intent);
     }
 }
