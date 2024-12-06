@@ -92,18 +92,12 @@ public class Professor {
                 String profName = tokens[0].trim();
                 String courseNum = tokens[1].trim();
                 double overallRating = Double.parseDouble(tokens[2].trim());
-//                String courseName = tokens[3].trim();
                 double difficultyRating = Double.parseDouble(tokens[3].trim());
-//                int courseRating = Integer.parseInt(tokens[5].trim());
                 String courseGrade = tokens[4].trim();
                 boolean mandatoryClass = Boolean.parseBoolean(tokens[5].trim());
                 boolean takeClassAgain = Boolean.parseBoolean(tokens[6].trim());
                 String reviewWriteup = tokens[7].trim();
 
-                // Create or retrieve the Professor
-//                Professor professor = professorsMap.getOrDefault(profName, new Professor(profName, new ArrayList<>(), overallRating, new Activity()));
-
-                //TEST FROM CHAT
                 Professor professor = professorsMap.getOrDefault(profName.trim(), new Professor(profName.trim(), new ArrayList<>(), overallRating, new Activity()));
                 professorsMap.putIfAbsent(profName.trim(), professor);
 
