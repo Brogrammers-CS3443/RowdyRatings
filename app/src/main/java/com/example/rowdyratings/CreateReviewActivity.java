@@ -20,6 +20,7 @@ import com.example.rowdyratings.model.Professor;
 import com.example.rowdyratings.model.Review;
 import com.google.android.material.chip.Chip;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CreateReviewActivity extends AppCompatActivity {
@@ -105,6 +106,12 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //professor.addReview(newReview);
                 Log.i(TAG,"Added the review successfully!");
 
+                //call the loadavd method
+                ArrayList<String> testArrayList = professor.loadDataInAVD();
+                for(String avdData: testArrayList){
+                    Log.i(TAG,"AVD Line: " + avdData);
+                }
+
 
             //    for(String key: professorsMap.keySet()){
 
@@ -141,7 +148,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //call the write review from the professor that is being passed
 
                 //at the end return to the professor activity page
-                launchViewProfessorActivity();
+                //launchViewProfessorActivity();
             }
         });
 

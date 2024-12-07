@@ -5,7 +5,9 @@ import android.content.Context;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.io.IOException;
@@ -287,5 +289,32 @@ public class Professor {
             difficultyRating += review.getDifficultyRating();
         }
         return difficultyRating / profReviews.size();
+    }
+
+    //loop through avd
+    //split lines in tokens array
+    //add it to the reviews in professor
+    //the parameter that
+
+    //create a method that will loop through the avd memory
+    //
+    public ArrayList<String> loadDataInAVD(){
+        ArrayList<String> avdData = new ArrayList<>();
+        try{
+            Log.d(TAG,"Attempting to open file from avd");
+            InputStream professorReviewsFile = context.openFileInput("professorReviews.csv");
+            Log.d(TAG,"Successfully opened file from AVD!");
+            Scanner scan = new Scanner(professorReviewsFile);//loop through the file in avd
+
+            scan.nextLine();//skip the header
+            while(scan.hasNextLine()){
+                String line = scan.nextLine();
+                avdData.add(line);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return avdData;
     }
 }
