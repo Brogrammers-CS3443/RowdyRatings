@@ -63,9 +63,12 @@ public class ViewProfessorActivity extends AppCompatActivity {
             Log.e(TAG, "Error! Professor was not found !!!" + professorName);
             return;
         }
-        loadProfessorReviews(professor);
-        double testOverall = loadProfessorReviews(professor);
-        Log.d(TAG, "Overall Rating: " + testOverall);
+        double overallRating = professor.calcOverallRating(professor);
+        double overallDifficulty = professor.calcAverageLevelOfDifficulty(professor);
+        double takeAgain = professor.calcWouldTakeAgain(professor);
+        loadProfessorReviews(professor, overallRating, overallDifficulty, takeAgain);
+
+
 
         selectedProfName = getIntent().getStringExtra("professorName");
         displayProfessorName(selectedProfName);
@@ -98,11 +101,9 @@ public class ViewProfessorActivity extends AppCompatActivity {
      */
     //kinda realized im gonna need several vertical layout within the horizontal layout if we want
     //the design as the prototype, i think
-    private double loadProfessorReviews(Professor professor){
+    private void loadProfessorReviews(Professor professor, double overallRating, double ovrDifficulty, double takeAgain){
         ArrayList<String> reviewArrayList = professor.loadDataInAVD();
         //Scanner scan = new Scanner(String.valueOf(reviewArrayList));
-        double overallRating = 0;
-        int counter = 0;
         for(String avdData : reviewArrayList){
             String[] tokens = avdData.split(",");
             String profName = tokens[0];
@@ -114,13 +115,9 @@ public class ViewProfessorActivity extends AppCompatActivity {
                 String classMandatory = tokens[5];
                 String wouldTakeAgain = tokens[6];
                 String reviewWriteUp = tokens[7];
-                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp);
-                counter++;
-                double tempRating = Double.parseDouble(rating);
-                overallRating += tempRating;
+                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp, overallRating, ovrDifficulty, takeAgain);
             }
         }
-        return overallRating / counter;
     }
 
 
@@ -134,10 +131,14 @@ public class ViewProfessorActivity extends AppCompatActivity {
      * @param wouldTakeAgain, would take again
      * @param reviewWriteUp, the review
      */
-    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp){
+    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp, double overallRating, double ovrDifficulty, double takeAgain){
         TextView profRating = findViewById(R.id.text1);
-        TextView takeAgain = findViewById(R.id.text2);
+        TextView takeAgainText = findViewById(R.id.text2);
         TextView levelOfDiff = findViewById(R.id.text3);
+
+        profRating.setText(String.valueOf(overallRating));
+        takeAgainText.setText(String.valueOf(ovrDifficulty));
+        levelOfDiff.setText(String.valueOf(takeAgain));
 
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
 
