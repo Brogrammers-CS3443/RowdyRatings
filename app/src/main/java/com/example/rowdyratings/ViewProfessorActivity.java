@@ -115,7 +115,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
                 String classMandatory = tokens[5];
                 String wouldTakeAgain = tokens[6];
                 String reviewWriteUp = tokens[7];
-                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp, overallRating, ovrDifficulty, takeAgain);
+                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp, overallRating, takeAgain, ovrDifficulty);
             }
         }
     }
@@ -131,14 +131,14 @@ public class ViewProfessorActivity extends AppCompatActivity {
      * @param wouldTakeAgain, would take again
      * @param reviewWriteUp, the review
      */
-    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp, double overallRating, double ovrDifficulty, double takeAgain){
+    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp, double overallRating, double takeAgain, double ovrDifficulty){
         TextView profRating = findViewById(R.id.text1);
         TextView takeAgainText = findViewById(R.id.text2);
         TextView levelOfDiff = findViewById(R.id.text3);
 
         profRating.setText(String.valueOf(overallRating));
-        takeAgainText.setText(String.valueOf(ovrDifficulty));
-        levelOfDiff.setText(String.valueOf(takeAgain));
+        takeAgainText.setText(String.valueOf(takeAgain) + "%");
+        levelOfDiff.setText(String.valueOf(ovrDifficulty));
 
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
 
