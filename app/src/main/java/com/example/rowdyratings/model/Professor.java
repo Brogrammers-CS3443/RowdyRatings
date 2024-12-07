@@ -414,7 +414,7 @@ public class Professor {
                 String wouldTakeAgain = tokens[6];
                 String reviewWriteUp = tokens[7];
                 counter++;
-                if(wouldTakeAgain.equalsIgnoreCase("Yes")){
+                if(wouldTakeAgain.equalsIgnoreCase("True")){
                     wouldTakeAgainCounter +=1;
                 }
             }
