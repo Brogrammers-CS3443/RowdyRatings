@@ -28,6 +28,11 @@ import java.util.Map;
 //and the individual reviews
 //although i need to wait to some things until we get the professors to load
 //****************************************************
+
+/**
+ *
+ * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
+ */
 public class ViewProfessorActivity extends AppCompatActivity {
 
     private String selectedProfName;
@@ -35,6 +40,13 @@ public class ViewProfessorActivity extends AppCompatActivity {
     private TextView professorName;
     private final String TAG = "viewProfessorActivity";
 
+    /**
+     * Start of the on create
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +81,21 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * displays professor names
+     * @param selectedProfName, the professor name
+     */
     private void displayProfessorName(String selectedProfName){
         //this is to display the professors name so we need to pass an professor object and get the name
         //pass an intention with a string of the professors name when they select a professor
         professorName.setText(selectedProfName);
     }
 
+    /**
+     * loads the professor reviews
+     * @param professor, the professor
+     * @return double, the overall rating of the professor
+     */
     //kinda realized im gonna need several vertical layout within the horizontal layout if we want
     //the design as the prototype, i think
     private double loadProfessorReviews(Professor professor){
@@ -102,6 +123,17 @@ public class ViewProfessorActivity extends AppCompatActivity {
         return overallRating / counter;
     }
 
+
+    /**
+     * Shows the professor reviews
+     * @param courseNum, the course number
+     * @param rating, the rating
+     * @param difficulty, the difficulty
+     * @param grade, the grade
+     * @param classMandatory, if class is mandatory
+     * @param wouldTakeAgain, would take again
+     * @param reviewWriteUp, the review
+     */
     private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp){
         TextView profRating = findViewById(R.id.text1);
         TextView takeAgain = findViewById(R.id.text2);
@@ -140,6 +172,9 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * launches the create review activity
+     */
     private void launchProfessorReviewsActivity(){
         Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);

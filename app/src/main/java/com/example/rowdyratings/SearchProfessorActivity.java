@@ -20,7 +20,7 @@ import com.example.rowdyratings.model.Professor;
 import com.example.rowdyratings.model.Review;
 
 /**
- * The Review class will represent a review of the professor object
+ *
  * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
  */
 public class SearchProfessorActivity extends AppCompatActivity {

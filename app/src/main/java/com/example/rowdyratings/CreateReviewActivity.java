@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * The Review class will represent a review of the professor object
+ *
  * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
  */
 public class CreateReviewActivity extends AppCompatActivity {
