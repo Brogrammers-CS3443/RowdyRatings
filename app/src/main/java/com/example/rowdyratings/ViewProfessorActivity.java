@@ -20,7 +20,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
 
 //****************************************************
 //Emilio
@@ -104,6 +103,10 @@ public class ViewProfessorActivity extends AppCompatActivity {
     }
 
     private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp){
+        TextView profRating = findViewById(R.id.text1);
+        TextView takeAgain = findViewById(R.id.text2);
+        TextView levelOfDiff = findViewById(R.id.text3);
+
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
 
         TextView courseInfo = new TextView(this);
