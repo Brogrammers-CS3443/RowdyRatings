@@ -388,4 +388,33 @@ public class Professor {
         }
         return avdData;
     }
+
+    //create a method for calculating the precent that would take again
+    public double calcWouldTakeAgain(Professor professor){
+        ArrayList<String> reviewArrayList = professor.loadDataInAVD();
+
+        double wouldTakeAgainCounter = 0;
+        double overallWouldTakeAgainPercentage = 0;
+        int counter = 0;
+        double wouldTakeAgainFraction = wouldTakeAgainCounter / counter;
+        for(String avdData: reviewArrayList){
+            String[] tokens = avdData.split(",");
+            String profName = tokens[0];
+            if(profName.equalsIgnoreCase(professor.getProfName())){
+                String courseNum = tokens[1];
+                String rating = tokens[2];
+                String difficulty = tokens[3];
+                String grade = tokens[4];
+                String classMandatory = tokens[5];
+                String wouldTakeAgain = tokens[6];
+                String reviewWriteUp = tokens[7];
+                counter++;
+                if(wouldTakeAgain.equalsIgnoreCase("Yes")){
+                    wouldTakeAgainCounter +=1;
+                }
+            }
+        }
+        overallWouldTakeAgainPercentage = wouldTakeAgainFraction * 100;
+        return overallWouldTakeAgainPercentage;
+    }
 }
