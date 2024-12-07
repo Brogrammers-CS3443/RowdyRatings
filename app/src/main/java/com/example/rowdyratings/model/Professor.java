@@ -389,6 +389,11 @@ public class Professor {
         return avdData;
     }
 
+    /**
+     * calculates the percent that would take again
+     * @param professor, the professor object
+     * @return double, the percent that would take the class again
+     */
     //create a method for calculating the precent that would take again
     public double calcWouldTakeAgain(Professor professor){
         ArrayList<String> reviewArrayList = professor.loadDataInAVD();
@@ -418,6 +423,11 @@ public class Professor {
         return overallWouldTakeAgainPercentage;
     }
 
+    /**
+     * calculates the average level of difficulty of the course
+     * @param professor, the professor object
+     * @return double, the average level of difficulty
+     */
     //create a method that will average level of difficulty
     public double calcAverageLevelOfDifficulty(Professor professor){
         ArrayList<String> reviewArrayList = professor.loadDataInAVD();
