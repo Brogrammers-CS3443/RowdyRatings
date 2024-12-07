@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +18,7 @@ import com.example.rowdyratings.model.Professor;
 import com.example.rowdyratings.model.Review;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 //****************************************************
@@ -26,10 +28,6 @@ import java.util.Map;
 //and the individual reviews
 //although i need to wait to some things until we get the professors to load
 //****************************************************
-/**
- * The Review class will represent a review of the professor object
- * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
- */
 public class ViewProfessorActivity extends AppCompatActivity {
 
     private String selectedProfName;
@@ -37,13 +35,6 @@ public class ViewProfessorActivity extends AppCompatActivity {
     private TextView professorName;
     private final String TAG = "viewProfessorActivity";
 
-    /**
-     * Start of the on create
-     * @param savedInstanceState If the activity is being re-initialized after
-     *     previously being shut down then this Bundle contains the data it most
-     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
-     *
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +45,15 @@ public class ViewProfessorActivity extends AppCompatActivity {
         FloatingActionButton reviewButton = findViewById(R.id.floatingActionButton);
 
         professorsMap = Professor.loadProfessors(this);
+        selectedProfName = getIntent().getStringExtra("professorName");
+        Professor professor = professorsMap.get(selectedProfName);
+        if(professor == null){
+            Log.e(TAG, "Error! Professor was not found !!!" + professorName);
+            return;
+        }
+        loadProfessorReviews(professor);
+        double testOverall = loadProfessorReviews(professor);
+        Log.d(TAG, "Overall Rating: " + testOverall);
 
         selectedProfName = getIntent().getStringExtra("professorName");
         displayProfessorName(selectedProfName);
@@ -69,41 +69,77 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * displays the professor name
-     * @param selectedProfName, the professor name
-     */
     private void displayProfessorName(String selectedProfName){
         //this is to display the professors name so we need to pass an professor object and get the name
         //pass an intention with a string of the professors name when they select a professor
         professorName.setText(selectedProfName);
     }
 
-
     //kinda realized im gonna need several vertical layout within the horizontal layout if we want
     //the design as the prototype, i think
-
-    /**
-     * shows the reviews for the professor
-     * @param professor, the professor object that we are searching with
-     */
-    private void showProfessorReviews(Professor professor){
-        Log.d(TAG, "Professor Reviews: " + professor.getProfReviews());
-        LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
-
-        for(Review review : professor.getProfReviews()){
-            TextView professorCourseTextView = new TextView(this);
-            professorCourseTextView.setText(review.getCourseNum());
-
-
-            verticalLayout.addView(professorCourseTextView);
-
+    private double loadProfessorReviews(Professor professor){
+        ArrayList<String> reviewArrayList = professor.loadDataInAVD();
+        //Scanner scan = new Scanner(String.valueOf(reviewArrayList));
+        double overallRating = 0;
+        int counter = 0;
+        for(String avdData : reviewArrayList){
+            String[] tokens = avdData.split(",");
+            String profName = tokens[0];
+            if(profName.equals(professor.getProfName())){
+                String courseNum = tokens[1];
+                String rating = tokens[2];
+                String difficulty = tokens[3];
+                String grade = tokens[4];
+                String classMandatory = tokens[5];
+                String wouldTakeAgain = tokens[6];
+                String reviewWriteUp = tokens[7];
+                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp);
+                counter++;
+                double tempRating = Double.parseDouble(rating);
+                overallRating += tempRating;
+            }
         }
+        return overallRating / counter;
     }
 
-    /**
-     * launches the activity to navigate to the create review screen
-     */
+    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp){
+        TextView profRating = findViewById(R.id.text1);
+        TextView takeAgain = findViewById(R.id.text2);
+        TextView levelOfDiff = findViewById(R.id.text3);
+
+        LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
+
+        TextView courseInfo = new TextView(this);
+        String topInfo = courseNum + "\t Grade: " + grade;
+        courseInfo.setBackgroundResource(R.drawable.rounded_corners);
+        courseInfo.setText(topInfo);
+        courseInfo.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        verticalLayout.addView(courseInfo);
+
+        Space spaceBetween = new Space(this);
+        spaceBetween.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                2
+        ));
+        verticalLayout.addView(spaceBetween);
+
+        TextView reviewInfo = new TextView(this);
+        reviewInfo.setBackgroundResource(R.drawable.rounded_corners);
+        String reviewInfoViewText = "Rating: " + rating + " Difficulty: " + difficulty +
+                                    " Class Mandatory?: " + classMandatory +
+                                    "\n" +  reviewWriteUp;
+        reviewInfo.setText(reviewInfoViewText);
+        courseInfo.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        ));
+        verticalLayout.addView(reviewInfo);
+
+    }
+
     private void launchProfessorReviewsActivity(){
         Intent intent = new Intent(this, CreateReviewActivity.class);
         startActivity(intent);
