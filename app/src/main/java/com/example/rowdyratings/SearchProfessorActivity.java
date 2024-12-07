@@ -19,12 +19,22 @@ import java.util.Map;
 import com.example.rowdyratings.model.Professor;
 import com.example.rowdyratings.model.Review;
 
-
+/**
+ * The Review class will represent a review of the professor object
+ * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
+ */
 public class SearchProfessorActivity extends AppCompatActivity {
     private Map<String, Professor> professorsMap;
     private LinearLayout searchResultsContainer;
     private Professor professor;
 
+    /**
+     * Start of the on create
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +57,24 @@ public class SearchProfessorActivity extends AppCompatActivity {
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             *
+             * @param query the query text that is to be submitted
+             *
+             * @return boolean, the on query
+             */
             @Override
             public boolean onQueryTextSubmit(String query) {
                 performProfessorSearch(query);
                 return true;
             }
 
+            /**
+             *
+             * @param newText the new content of the query text field.
+             *
+             * @return boolean, the query
+             */
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
@@ -60,6 +82,10 @@ public class SearchProfessorActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Searches for the professor
+     * @param professorName, the name of the professor
+     */
     private void performProfessorSearch(String professorName) {
         searchResultsContainer.removeAllViews(); // Clear previous search results
 
@@ -84,6 +110,10 @@ public class SearchProfessorActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Displays the professors
+     * @param professor, the professor object
+     */
     private void displayProfessors(Professor professor){
         //create a button for the found professor
         Button professorButton = new Button(this);

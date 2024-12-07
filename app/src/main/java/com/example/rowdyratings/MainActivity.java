@@ -11,9 +11,18 @@ import com.example.rowdyratings.model.Professor;
 import com.example.rowdyratings.model.Review;
 
 import java.util.ArrayList;
-
+/**
+ * The Review class will represent a review of the professor object
+ * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
+ */
 public class MainActivity extends AppCompatActivity {
-
+    /**
+     * Start of the on create
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         newProfessor.initializeFilesAVD();
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
+            /**
+             * sets the on click of the search button
+             * @param view The view that was clicked.
+             */
             @Override
             public void onClick(View view) {
                 try {
@@ -40,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * launches the activity to navigate to the search professor activity screen
+     */
     private void launchSearchProfessorActivity(){
         Intent intent = new Intent(this, SearchProfessorActivity.class);
         startActivity(intent);

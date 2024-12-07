@@ -19,6 +19,10 @@ import android.content.res.AssetManager;
 import android.icu.util.Output;
 import android.util.Log;
 
+/**
+ * The Professor class will represent a professor object that will be stored in AVD memory
+ * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
+ */
 public class Professor {
     private String profName;
     private ArrayList<Review> profReviews;
@@ -28,6 +32,13 @@ public class Professor {
 
     private static final String TAG = "Professor";
 
+    /**
+     * \
+     * @param profName, the name of the professor
+     * @param profReviews, the list of reviews for that professor
+     * @param overallRating, the rating the professor received
+     * @param context, the context
+     */
     public Professor(String profName, ArrayList<Review> profReviews, double overallRating, Context context) {
         this.profName = profName;
         this.profReviews = profReviews;
@@ -35,35 +46,68 @@ public class Professor {
         this.context = context;
     }
 
+    /**
+     * Gets the name of the Professor
+     * @return String, the name of the professor
+     */
     public String getProfName() {
         return profName;
     }
 
+    /**
+     * Sets the professor name
+     * @param profName, the name of the professor
+     */
     public void setProfName(String profName) {
         this.profName = profName;
     }
 
+    /**
+     * Gets the reviews of the professor
+     * @return ArrayList<Review>, the list of reviews for the professor
+     */
     public ArrayList<Review> getProfReviews() {
         return profReviews;
     }
 
+    /**
+     * Sets the reviews for the professor
+     * @param profReviews, the list of reviews for that professor
+     */
     public void setProfReviews(ArrayList<Review> profReviews) {
         this.profReviews = profReviews;
     }
 
+    /**
+     * gets the overall rating
+     * @return double, the overall rating of the professor
+     */
     public double getOverallRating() {
         return overallRating;
     }
 
+    /**
+     * Sets the overall rating
+     * @param overallRating, the overall rating of the course
+     */
     public void setOverallRating(double overallRating) {
         this.overallRating = overallRating;
     }
 
+    /**
+     * adds a review to the professor review array list
+     * @param profReview, the review being added to the list of professor reviews
+     */
     public void addReview(Review profReview){
         profReviews.add(profReview);
     }
 
-
+    /**
+     * This method loads through the csv data and maps professor
+     * and their name
+     * @param , the context
+     * @return Map, a map of the professor
+     */
     public static Map<String, Professor> loadProfessors(Context context) {
         Map<String, Professor> professorsMap = new HashMap<>();
         String profFileName = "professorNames.csv"; //ensure file exists in AVD
@@ -109,9 +153,11 @@ public class Professor {
     }
 
 
+    /**
+     * create a function that will attempt to read from file in avd memory
+     * if file does not exist we will create that file and call a function to write to the files in
+     */
 
-    //create a function that will attempt to read from file in avd memory
-    //if file does not exist we will create that file and call a function to write to the files in
     //avd memory
     public void initializeFilesAVD(){
         try{
@@ -143,7 +189,9 @@ public class Professor {
         }
     }
 
-    //create a method that will open the professorName.csv file in assets and write to it in avd memory
+    /**
+     * create a method that will open the professorName.csv file in assets and write to it in avd memory
+     */
     public void loadProfessorNamesFromCSV(){
         //get the asseets manager from our assets directory
         AssetManager manager = context.getAssets();
@@ -185,7 +233,10 @@ public class Professor {
         }
     }
 
-    //create a method that will open the professorReview.csv file in assets and write to it in avd memory
+    /**
+     * create a method that will open the professorReview.csv file in assets and write to it in avd memory
+     * @param newReview, the review that we are adding to the avd
+     */
     public void writeReview(Review newReview){
         String profName = newReview.getProfessor().getProfName();
         String courseNum = newReview.getCourseNum();
@@ -225,6 +276,10 @@ public class Professor {
         Log.i(TAG, "Adding review to AVD");
         addReview(newReview);
     }
+
+    /**
+     * reads reviews from csv in assets
+     */
     public void loadProfessorReviewsFromCSV(){
         //get the asseets manager from our assets directory
         AssetManager manager = context.getAssets();
@@ -272,6 +327,11 @@ public class Professor {
 
 
     //returns average of overall ratings
+
+    /**
+     * calculates the overall rating of the professor
+     * @return double, the overall rating of the professor
+     */
     public double calcOverallRating(){
         double overallRating = 0;
 
@@ -282,6 +342,11 @@ public class Professor {
     }
 
     //returns average of difficulty ratings
+
+    /**
+     * calculates the difficulty rating of the professor
+     * @return double, the difficulty rating of the professor
+     */
     public double calcDifficultyRating(){
         double difficultyRating = 0;
 
@@ -298,6 +363,12 @@ public class Professor {
 
     //create a method that will loop through the avd memory
     //
+
+    /**
+     * create a method that will loop through the avd memory and return an array list of strings
+     * representing the individual reviews
+     * @return ArrayList<String>, the review data in avd memory
+     */
     public ArrayList<String> loadDataInAVD(){
         ArrayList<String> avdData = new ArrayList<>();
         try{

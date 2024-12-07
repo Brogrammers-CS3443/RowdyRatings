@@ -23,10 +23,21 @@ import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * The Review class will represent a review of the professor object
+ * @author Matthew Perez, Jeremy Sellers, Zane Lakhani, Emilio Hernandez
+ */
 public class CreateReviewActivity extends AppCompatActivity {
     private static final String TAG = "CreateReviewActivity";
     private Map<String, Professor> professorsMap;
 
+    /**
+     * Starts the on create
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +67,15 @@ public class CreateReviewActivity extends AppCompatActivity {
 
         //pretend on click
 
+
+
         //Create Submit review button
         Button submitReviewButton = findViewById(R.id.button);
         submitReviewButton.setOnClickListener(new View.OnClickListener() {
+            /**
+             * sets the on click of the submit review button
+             * @param v The view that was clicked.
+             */
             @Override
             public void onClick(View v) {
                 String classNumber = editClassNumber.getText().toString();
@@ -110,6 +127,14 @@ public class CreateReviewActivity extends AppCompatActivity {
                 ArrayList<String> testArrayList = professor.loadDataInAVD();
                 for(String avdData: testArrayList){
                     Log.i(TAG,"AVD Line: " + avdData);
+
+                    //split avd data by comma
+                    //String[] tokens = avdData.split(",");
+                    //if(tokens[0].equals(extra)){
+                    //  assign values for updating
+                    //String professorName = tokens[0]
+                    //String courseNum = tokens[1]
+                    // }
                 }
 
 
@@ -154,6 +179,11 @@ public class CreateReviewActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * find and returns a professor object based on the name
+     * @param profName, the name of the professor we are searching for
+     * @return Professor, the professor that we were searching for
+     */
     //create a method that will iterate through the map and return the professor object
     private Professor findProfessorByName(String profName){
         for(String key: professorsMap.keySet()){
@@ -163,6 +193,10 @@ public class CreateReviewActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    /**
+     * launches the professor activity to go back to the view Professor activity Screen
+     */
     private void launchViewProfessorActivity(){
         Intent intent = new Intent(this, ViewProfessorActivity.class);
         startActivity(intent);
