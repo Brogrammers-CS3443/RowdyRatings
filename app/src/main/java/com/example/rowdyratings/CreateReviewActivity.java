@@ -71,7 +71,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 boolean classMandatory = classMandatoryCheckBox.isChecked();
                 boolean wouldTakeAgain = wouldTakeAgainCheckBox.isChecked();
 
-                Professor professor = findProfessorByName(professorName);
+                Professor professor = professorsMap.get(professorName);
                 //Log.i(TAG,"Start of the on click method...");
 
                 if(professor == null){
@@ -92,14 +92,17 @@ public class CreateReviewActivity extends AppCompatActivity {
                 Review testReview = new Review("3443", professor,  2.0, 4.0, "A+", true, true, "Great class, would" +
                         " love to take again!!! This is a test review!");
 
+                professor.addReview(testReview);
                 professor.writeReview(testReview);
+
                 Log.i(TAG, "Added review for: " + professor.getProfName());
 
-                //professor.addReview(newReview);
+                professor.addReview(newReview);
 
                 //NOW ADD THE REAL REVIEW
                 Log.i(TAG,"Now adding the actual review for : " + professor.getProfName());
                 professor.writeReview(newReview);
+                //professor.addReview(newReview);
                 Log.i(TAG,"Added the review successfully!");
 
 
@@ -138,7 +141,7 @@ public class CreateReviewActivity extends AppCompatActivity {
                 //call the write review from the professor that is being passed
 
                 //at the end return to the professor activity page
-                //launchViewProfessorActivity();
+                launchViewProfessorActivity();
             }
         });
 

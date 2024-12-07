@@ -3,6 +3,7 @@ package com.example.rowdyratings;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,14 +12,12 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.rowdyratings.model.Professor;
+import com.example.rowdyratings.model.Review;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.w3c.dom.Text;
+import java.util.Map;
 
 //****************************************************
 //Emilio
@@ -29,14 +28,26 @@ import org.w3c.dom.Text;
 //****************************************************
 public class ViewProfessorActivity extends AppCompatActivity {
 
+    private String selectedProfName;
+    private Map<String, Professor> professorsMap;
+    private TextView professorName;
+    private final String TAG = "viewProfessorActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_view_professor);
 
-        TextView courseTextView = findViewById(R.id.professorNameTextView);
+        professorName = findViewById(R.id.professorNameTextView);
         FloatingActionButton reviewButton = findViewById(R.id.floatingActionButton);
+
+        professorsMap = Professor.loadProfessors(this);
+
+        selectedProfName = getIntent().getStringExtra("professorName");
+        displayProfessorName(selectedProfName);
+        searchForProfessor(selectedProfName);
+
 
         reviewButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -47,46 +58,36 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
     }
 
-    //need to handle loading of professors from csv before we can do this
-    private void displayProfessorName(){
+    private void displayProfessorName(String selectedProfName){
         //this is to display the professors name so we need to pass an professor object and get the name
-        //or pass an intention with a string of the professors name when they select a professor
+        //pass an intention with a string of the professors name when they select a professor
+        professorName.setText(selectedProfName);
     }
 
+    private void searchForProfessor(String selectedProfName){
+        for (String key : professorsMap.keySet()) {
+            if (key.contains(selectedProfName)) {
+                Professor professor = professorsMap.get(key);
+                Log.d(TAG, "Professor found: " + professor.getProfName());
+                showProfessorReviews(professor);
+            }
+        }
+
+    }
     //kinda realized im gonna need several vertical layout within the horizontal layout if we want
     //the design as the prototype, i think
-    private void showProfessorReviews(){
+    private void showProfessorReviews(Professor professor){
+        Log.d(TAG, "Professor Reviews: " + professor.getProfReviews());
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
-        //*******this is just temp until we get the professors to load********
-        //for(int i=0; i<reviews.size(); i++){
-            LinearLayout horizontalLayout = new LinearLayout(this);
-            horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
 
+        for(Review review : professor.getProfReviews()){
             TextView professorCourseTextView = new TextView(this);
-            professorCourseTextView.setLayoutParams(new ViewGroup.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            professorCourseTextView.setBackgroundResource(R.drawable.rounded_corners);
-            professorCourseTextView.setPadding(4,4,4,4);
-            professorCourseTextView.setTextColor(Color.BLACK);
-            //professorCourseTextView.setText(reviews.getCourseName);
+            professorCourseTextView.setText(review.getCourseNum());
 
-            TextView professorReviewTextView = new TextView(this);
-            professorReviewTextView.setLayoutParams(new ViewGroup.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            professorReviewTextView.setBackgroundResource(R.drawable.rounded_corners);
-            professorReviewTextView.setPadding(4,4,4,4);
-            professorReviewTextView.setTextColor(Color.BLACK);
-            //professorReviewTextView.setText
 
-            horizontalLayout.addView(professorReviewTextView);
+            verticalLayout.addView(professorCourseTextView);
 
-        //}
-
-        verticalLayout.addView(horizontalLayout);
+        }
     }
 
     private void launchProfessorReviewsActivity(){

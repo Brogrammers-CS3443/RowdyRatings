@@ -58,8 +58,7 @@ public class Professor {
     }
 
     public void addReview(Review profReview){
-        if(profReview != null)
-            profReviews.add(profReview);
+        profReviews.add(profReview);
     }
 
 
@@ -217,9 +216,12 @@ public class Professor {
             out.write(review.getBytes(StandardCharsets.UTF_8));
             out.write("\n".getBytes(StandardCharsets.UTF_8));
             out.close();
+
         }catch (IOException e){
             Log.i(TAG, "Failed to write to file. " );
         }
+        Log.i(TAG, "Adding review to AVD");
+        addReview(newReview);
     }
     public void loadProfessorReviewsFromCSV(){
         //get the asseets manager from our assets directory

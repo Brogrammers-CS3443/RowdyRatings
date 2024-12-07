@@ -143,8 +143,8 @@
             android:id="@+id/floatingActionButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="Click to add review"
             android:clickable="true"
+            android:contentDescription="Click to add review"
             app:srcCompat="@android:drawable/ic_menu_add" />
     </RelativeLayout>
 
