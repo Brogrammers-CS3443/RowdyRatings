@@ -401,7 +401,6 @@ public class Professor {
         double wouldTakeAgainCounter = 0;
         double overallWouldTakeAgainPercentage = 0;
         int counter = 0;
-        double wouldTakeAgainFraction = wouldTakeAgainCounter / counter;
         for(String avdData: reviewArrayList){
             String[] tokens = avdData.split(",");
             String profName = tokens[0];
@@ -419,6 +418,12 @@ public class Professor {
                 }
             }
         }
+        double wouldTakeAgainFraction = wouldTakeAgainCounter / counter;
+        Log.i(TAG, "would take again: " + wouldTakeAgainCounter);
+        Log.i(TAG, "overall counter: " + counter);
+        Log.i(TAG, "fraction: " + wouldTakeAgainFraction);
+
+
         overallWouldTakeAgainPercentage = wouldTakeAgainFraction * 100;
         return overallWouldTakeAgainPercentage;
     }
