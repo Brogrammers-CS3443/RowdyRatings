@@ -417,4 +417,29 @@ public class Professor {
         overallWouldTakeAgainPercentage = wouldTakeAgainFraction * 100;
         return overallWouldTakeAgainPercentage;
     }
+
+    //create a method that will average level of difficulty
+    public double calcAverageLevelOfDifficulty(Professor professor){
+        ArrayList<String> reviewArrayList = professor.loadDataInAVD();
+        //Scanner scan = new Scanner(String.valueOf(reviewArrayList));
+        double overallDifficulty = 0;
+        int counter = 0;
+        for(String avdData : reviewArrayList){
+            String[] tokens = avdData.split(",");
+            String profName = tokens[0];
+            if(profName.equals(professor.getProfName())){
+                String courseNum = tokens[1];
+                String rating = tokens[2];
+                String difficulty = tokens[3];
+                String grade = tokens[4];
+                String classMandatory = tokens[5];
+                String wouldTakeAgain = tokens[6];
+                String reviewWriteUp = tokens[7];
+                counter++;
+                double tempDifficulty = Double.parseDouble(difficulty);
+                overallDifficulty += tempDifficulty;
+            }
+        }
+        return overallDifficulty / counter;
+    }
 }
