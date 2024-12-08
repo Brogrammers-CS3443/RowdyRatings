@@ -53,6 +53,7 @@
         android:hint="Ex: A+"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/white"
         android:textColorHint="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,6 +92,7 @@
         android:hint="Prof Name"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/white"
         android:textColorHint="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -177,10 +179,10 @@
         android:hint="Class Number"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/white"
         android:textColorHint="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <EditText
@@ -193,6 +195,7 @@
         android:hint="Enter Thoughts Here (max 250 characters)"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/white"
         android:textColorHint="@color/cardview_light_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -215,12 +218,13 @@
         android:id="@+id/button"
         android:layout_width="121dp"
         android:layout_height="106dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginEnd="240dp"
         android:text="Submit\nReview"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/chipTakeClassAgain"
-        app:layout_constraintTop_toBottomOf="@+id/courseGradeBox" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

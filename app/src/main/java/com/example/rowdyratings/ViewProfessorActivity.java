@@ -114,8 +114,9 @@ public class ViewProfessorActivity extends AppCompatActivity {
                 String grade = tokens[4];
                 String classMandatory = tokens[5];
                 String wouldTakeAgain = tokens[6];
-                String reviewWriteUp = tokens[7];
-                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, reviewWriteUp, overallRating, takeAgain, ovrDifficulty);
+                String date = tokens[7];
+                String reviewWriteUp = tokens[8];
+                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, date, reviewWriteUp, overallRating, takeAgain, ovrDifficulty);
             }
         }
     }
@@ -131,7 +132,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
      * @param wouldTakeAgain, would take again
      * @param reviewWriteUp, the review
      */
-    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String reviewWriteUp, double overallRating, double takeAgain, double ovrDifficulty){
+    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String date, String reviewWriteUp, double overallRating, double takeAgain, double ovrDifficulty){
         TextView profRating = findViewById(R.id.text1);
         TextView takeAgainText = findViewById(R.id.text2);
         TextView levelOfDiff = findViewById(R.id.text3);

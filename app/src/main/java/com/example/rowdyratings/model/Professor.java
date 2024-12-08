@@ -18,6 +18,7 @@ import java.io.InputStream;
 import android.content.res.AssetManager;
 import android.icu.util.Output;
 import android.util.Log;
+import java.time.LocalDate;
 
 /**
  * The Professor class will represent a professor object that will be stored in AVD memory
@@ -246,6 +247,8 @@ public class Professor {
         boolean mandatory = newReview.isMandatoryClass();
         boolean wouldTakeAgain = newReview.isTakeClassAgain();
         String review = newReview.getReviewWriteup();
+        LocalDate currentDate = LocalDate.now();
+
 
         //create logic for writing these values to avd
         try{
@@ -265,6 +268,8 @@ public class Professor {
             out.write(String.valueOf(mandatory).getBytes(StandardCharsets.UTF_8));
             out.write(",".getBytes(StandardCharsets.UTF_8));
             out.write(String.valueOf(wouldTakeAgain).getBytes(StandardCharsets.UTF_8));
+            out.write(",".getBytes(StandardCharsets.UTF_8));
+            out.write(currentDate.toString().getBytes(StandardCharsets.UTF_8));
             out.write(",".getBytes(StandardCharsets.UTF_8));
             out.write(review.getBytes(StandardCharsets.UTF_8));
             out.write("\n".getBytes(StandardCharsets.UTF_8));
