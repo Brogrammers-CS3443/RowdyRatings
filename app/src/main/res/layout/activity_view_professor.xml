@@ -27,7 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="67dp"
             android:background="#FAF7F7"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="28sp"
+            tools:text="Professor Name" />
 
         <LinearLayout
             android:layout_width="match_parent"
