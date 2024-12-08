@@ -116,7 +116,7 @@ public class ViewProfessorActivity extends AppCompatActivity {
                 String wouldTakeAgain = tokens[6];
                 String date = tokens[7];
                 String reviewWriteUp = tokens[8];
-                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, date, reviewWriteUp, overallRating, takeAgain, ovrDifficulty);
+                showProfessorReviews(courseNum, rating, difficulty, grade, classMandatory, wouldTakeAgain, date, reviewWriteUp, overallRating, ovrDifficulty, takeAgain);
             }
         }
     }
@@ -132,11 +132,10 @@ public class ViewProfessorActivity extends AppCompatActivity {
      * @param wouldTakeAgain, would take again
      * @param reviewWriteUp, the review
      */
-    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String date, String reviewWriteUp, double overallRating, double takeAgain, double ovrDifficulty){
+    private void showProfessorReviews(String courseNum, String rating, String difficulty, String grade, String classMandatory, String wouldTakeAgain, String date, String reviewWriteUp, double overallRating, double ovrDifficulty, double takeAgain){
         TextView profRating = findViewById(R.id.text1);
         TextView takeAgainText = findViewById(R.id.text2);
         TextView levelOfDiff = findViewById(R.id.text3);
-
 
         profRating.setText(String.format("%.2f", overallRating) + "/5");
         takeAgainText.setText(String.format("%.2f", takeAgain) + "%");
@@ -145,13 +144,14 @@ public class ViewProfessorActivity extends AppCompatActivity {
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
 
         TextView courseInfo = new TextView(this);
-        String topInfo = courseNum + "\t Grade: " + grade;
+        String topInfo = courseNum + "                                                          " + date;
         courseInfo.setBackgroundResource(R.drawable.rounded_corners);
         courseInfo.setText(topInfo);
         courseInfo.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
+        courseInfo.setPadding(2, 2, 2, 2);
         verticalLayout.addView(courseInfo);
 
         Space spaceBetween = new Space(this);
@@ -163,14 +163,15 @@ public class ViewProfessorActivity extends AppCompatActivity {
 
         TextView reviewInfo = new TextView(this);
         reviewInfo.setBackgroundResource(R.drawable.rounded_corners);
-        String reviewInfoViewText = "Rating: " + rating + " Difficulty: " + difficulty +
-                                    " Class Mandatory?: " + classMandatory +
+        String reviewInfoViewText = "Rating: " + rating + " Difficulty: " + difficulty + " Grade: " + grade +
+                                    "\nClass Mandatory? " + classMandatory  + " Would Take It Again? " + wouldTakeAgain +
                                     "\n" +  reviewWriteUp;
         reviewInfo.setText(reviewInfoViewText);
         courseInfo.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         ));
+        reviewInfo.setPadding(8, 8, 8, 8);
         verticalLayout.addView(reviewInfo);
 
     }

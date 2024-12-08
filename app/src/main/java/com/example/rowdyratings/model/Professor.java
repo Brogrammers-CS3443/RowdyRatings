@@ -423,7 +423,7 @@ public class Professor {
                 String reviewWriteUp = tokens[7];
                 Log.i(TAG,"The value of would take again if professor name match is found is: " + wouldTakeAgain);
                 counter++;
-                if(wouldTakeAgain.equals("True")){
+                if(wouldTakeAgain.equalsIgnoreCase("true")){
                     wouldTakeAgainCounter +=1;
                 }
             }

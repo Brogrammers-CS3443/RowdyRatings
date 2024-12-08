@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -105,6 +106,8 @@ public class CreateReviewActivity extends AppCompatActivity {
                 Log.i(TAG, "Review was added: " + newReview.getReviewWriteup());
 
                 Log.i(TAG,"Professor retrieved successfully! Professor retrieved: " + professor.getProfName());
+
+                Toast.makeText(CreateReviewActivity.this, "Review has been added.", Toast.LENGTH_SHORT).show();
 
                 //professor.writeReview(newReview);//write review is the only thing causing the crash
                 //for testing purposes, create a review object and pass it to the newProfessors write review method

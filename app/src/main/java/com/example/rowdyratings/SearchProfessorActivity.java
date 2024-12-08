@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -48,6 +49,15 @@ public class SearchProfessorActivity extends AppCompatActivity {
         SearchView searchView = findViewById(R.id.professor_search_view);
         searchResultsContainer = findViewById(R.id.profContainer);
 
+        TextView startingInfo = new TextView(this);
+        String welcomeInfo = "Hi Welcome to Rowdy Ratings!\n" +
+                             "Search for a Professor by their name in the search bar!\n" +
+                             "Go RoadRunners!";
+        startingInfo.setText(welcomeInfo);
+        startingInfo.setTextColor(getResources().getColor(R.color.black));
+        startingInfo.setBackgroundResource(R.drawable.orange_rounded_corners);
+        startingInfo.setPadding(8,8,8,8);
+        searchResultsContainer.addView(startingInfo);
 
 
 
@@ -118,8 +128,8 @@ public class SearchProfessorActivity extends AppCompatActivity {
         Button professorButton = new Button(this);
         double overallRating = professor.calcOverallRating(professor);
         int numOfReviews = professor.numberOfReviews(professor);
-        String profSubDescription = professor.getProfName() + "         Overall Rating: " + overallRating+"\n" +
-                                    numOfReviews + " reviews";
+        String profSubDescription = professor.getProfName() + "\n Overall Rating: " + String.format("%.2f",overallRating) + "/5"
+                                    + "\n" + numOfReviews + " reviews";
         professorButton.setText(profSubDescription);
 
         professorButton.setOnClickListener(view -> {
