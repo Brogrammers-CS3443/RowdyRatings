@@ -313,6 +313,8 @@ public class Professor {
 
                 out2.write(line.getBytes(StandardCharsets.UTF_8));
                 out2.write("\n".getBytes(StandardCharsets.UTF_8));
+                Log.i(TAG,"The professorReveiw line in assets csv is: " + line);
+
             }
             Log.i(TAG,"Added all of the prof names to file in avd successfully!");
 
@@ -410,10 +412,11 @@ public class Professor {
                 String difficulty = tokens[3];
                 String grade = tokens[4];
                 String classMandatory = tokens[5];
-                String wouldTakeAgain = tokens[6];
+                String wouldTakeAgain = tokens[6].trim();
                 String reviewWriteUp = tokens[7];
+                Log.i(TAG,"The value of would take again if professor name match is found is: " + wouldTakeAgain);
                 counter++;
-                if(wouldTakeAgain.equalsIgnoreCase("True")){
+                if(wouldTakeAgain.equals("True")){
                     wouldTakeAgainCounter +=1;
                 }
             }
