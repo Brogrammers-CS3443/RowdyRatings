@@ -108,11 +108,11 @@ public class CreateReviewActivity extends AppCompatActivity {
 
                 //professor.writeReview(newReview);//write review is the only thing causing the crash
                 //for testing purposes, create a review object and pass it to the newProfessors write review method
-                Review testReview = new Review("3443", professor,  2.0, 4.0, "A+", true, true, "Great class, would" +
-                        " love to take again!!! This is a test review!");
+//                Review testReview = new Review("3443", professor,  2.0, 4.0, "A+", true, true, "Great class, would" +
+//                        " love to take again!!! This is a test review!");
 
-                professor.addReview(testReview);
-                professor.writeReview(testReview);
+//                professor.addReview(testReview);
+//                professor.writeReview(testReview);
 
                 Log.i(TAG, "Added review for: " + professor.getProfName());
 
