@@ -109,7 +109,6 @@ public class SearchProfessorActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * Displays the professors
      * @param professor, the professor object
@@ -117,15 +116,16 @@ public class SearchProfessorActivity extends AppCompatActivity {
     private void displayProfessors(Professor professor){
         //create a button for the found professor
         Button professorButton = new Button(this);
-        String profSubDescription = professor.getProfName() + "         Overall Rating: " + professor.getOverallRating()+"\n" +
-                                    professor.getProfReviews().size() + " ratings";
+        double overallRating = professor.calcOverallRating(professor);
+        int numOfReviews = professor.numberOfReviews(professor);
+        String profSubDescription = professor.getProfName() + "         Overall Rating: " + overallRating+"\n" +
+                                    numOfReviews + " reviews";
         professorButton.setText(profSubDescription);
 
         professorButton.setOnClickListener(view -> {
             Intent intent = new Intent(SearchProfessorActivity.this, ViewProfessorActivity.class);
             intent.putExtra("professorName", professor.getProfName());
             startActivity(intent);
-            //launchViewProfActivity();
         });
 
         //added button
@@ -139,8 +139,5 @@ public class SearchProfessorActivity extends AppCompatActivity {
         professorButton.setBackgroundResource(R.drawable.orange_rounded_corners);
         professorButton.setCompoundDrawablePadding(100);
     }
-    /*private void launchViewProfActivity(){
-        Intent intent = new Intent(this, ViewProfessorActivity.class);
-        startActivity(intent);
-    }*/
+
 }
