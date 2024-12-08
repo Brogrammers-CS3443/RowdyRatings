@@ -30,6 +30,7 @@ import java.util.Map;
 public class CreateReviewActivity extends AppCompatActivity {
     private static final String TAG = "CreateReviewActivity";
     private Map<String, Professor> professorsMap;
+    private static final String intentKey = "professorName";
 
     /**
      * Starts the on create
@@ -70,7 +71,7 @@ public class CreateReviewActivity extends AppCompatActivity {
 
 
         //Create Submit review button
-        Button submitReviewButton = findViewById(R.id.button);
+        Button submitReviewButton = findViewById(R.id.submitReview);
         submitReviewButton.setOnClickListener(new View.OnClickListener() {
             /**
              * sets the on click of the submit review button
@@ -177,6 +178,26 @@ public class CreateReviewActivity extends AppCompatActivity {
             }
         });
 
+        //create button to return to view professor screen
+        Button returnButton = findViewById(R.id.returnToProfessor);
+        //set on click method for return to proffessor button
+       returnButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String classNumber = editClassNumber.getText().toString();
+               String professorName = editProfessorName.getText().toString();
+               String grade = editGradeText.getText().toString();
+               String reviewText= editReviewText.getText().toString();
+
+               double difficultyRating = (double) difficultyRatingBar.getRating();
+               double overallCourseRating = (double) overallCourseRatingBar.getRating();
+
+               boolean classMandatory = classMandatoryCheckBox.isChecked();
+               boolean wouldTakeAgain = wouldTakeAgainCheckBox.isChecked();
+               launchViewProfessorActivity(professorName);
+           }
+       });
+
     }
 
     /**
@@ -197,8 +218,9 @@ public class CreateReviewActivity extends AppCompatActivity {
     /**
      * launches the professor activity to go back to the view Professor activity Screen
      */
-    private void launchViewProfessorActivity(){
+    private void launchViewProfessorActivity(String professorName){
         Intent intent = new Intent(this, ViewProfessorActivity.class);
+        intent.putExtra(intentKey, professorName);
         startActivity(intent);
     }
 }
