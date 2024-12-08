@@ -485,4 +485,17 @@ public class Professor {
         }
         return overallRating / counter;
     }
+
+    public int numberOfReviews(Professor professor){
+        ArrayList<String> reviewArrayList = professor.loadDataInAVD();
+        int counter = 0;
+        for(String avdData : reviewArrayList){
+            String[] tokens = avdData.split(",");
+            String profName = tokens[0];
+            if(profName.equals(professor.getProfName())){
+                counter++;
+            }
+        }
+        return counter;
+    }
 }
