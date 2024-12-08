@@ -137,9 +137,10 @@ public class ViewProfessorActivity extends AppCompatActivity {
         TextView takeAgainText = findViewById(R.id.text2);
         TextView levelOfDiff = findViewById(R.id.text3);
 
-        profRating.setText(String.valueOf(overallRating) + "/5");
-        takeAgainText.setText(String.valueOf(takeAgain) + "%");
-        levelOfDiff.setText(String.valueOf(ovrDifficulty) + "/5");
+
+        profRating.setText(String.format("%.2f", overallRating) + "/5");
+        takeAgainText.setText(String.format("%.2f", takeAgain) + "%");
+        levelOfDiff.setText(String.format("%.2f", ovrDifficulty) + "/5");
 
         LinearLayout verticalLayout = findViewById(R.id.professorReviewHolder);
 

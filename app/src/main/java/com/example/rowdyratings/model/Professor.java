@@ -171,8 +171,8 @@ public class Professor {
             professorReviewsFile.close();
 
             //call method to read through csv and write to it
-            loadProfessorNamesFromCSV();
-            loadProfessorReviewsFromCSV();
+            //loadProfessorNamesFromCSV();
+            //loadProfessorReviewsFromCSV();
         }catch(IOException e1){
             Log.i(TAG,"AVD file is not found. Creating one...");
 
@@ -184,6 +184,8 @@ public class Professor {
                 professorReviewsOutputFile.close();
 
                 //call methods to load from the csv in assets
+                loadProfessorNamesFromCSV();
+                loadProfessorReviewsFromCSV();
             }catch(IOException e2){
                 Log.e(TAG,"Failed ot initialize avd");
             }
